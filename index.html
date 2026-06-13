@@ -393,6 +393,135 @@
       border-top: 1px solid rgba(49, 95, 76, .16);
     }
 
+    .cover-system {
+      display: grid;
+      grid-template-columns: .74fr 1.26fr;
+      gap: 18px;
+      align-items: stretch;
+      margin: 8px 0 40px;
+    }
+
+    .production-card {
+      border: 1px solid rgba(49, 95, 76, .18);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, .72);
+      padding: 22px;
+      box-shadow: 0 10px 30px rgba(37, 52, 44, .06);
+      display: grid;
+      align-content: space-between;
+      gap: 26px;
+    }
+
+    .production-card h3 {
+      font-size: clamp(26px, 3vw, 38px);
+      line-height: 1.03;
+      margin-bottom: 12px;
+    }
+
+    .production-card p {
+      color: var(--muted);
+      margin-bottom: 0;
+    }
+
+    .production-specs {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .production-specs span {
+      border-radius: var(--radius);
+      background: var(--surface-2);
+      padding: 12px;
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .cover-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .cover-card {
+      position: relative;
+      min-height: 420px;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid rgba(49, 95, 76, .18);
+      background: var(--soft);
+      box-shadow: var(--shadow);
+      isolation: isolate;
+    }
+
+    .cover-card img {
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .cover-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background:
+        linear-gradient(180deg, rgba(24, 34, 31, .16), rgba(24, 34, 31, .68)),
+        radial-gradient(circle at 20% 0%, rgba(255, 255, 255, .28), transparent 34%);
+    }
+
+    .cover-body {
+      min-height: 100%;
+      padding: 18px;
+      display: grid;
+      align-content: space-between;
+      color: #fff;
+    }
+
+    .cover-index {
+      display: inline-block;
+      width: fit-content;
+      border-bottom: 1px solid rgba(255, 255, 255, .52);
+      padding-bottom: 7px;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: .04em;
+    }
+
+    .cover-card h3 {
+      font-size: clamp(24px, 2.6vw, 32px);
+      line-height: 1.02;
+      margin: 0 0 10px;
+      text-wrap: balance;
+    }
+
+    .cover-card p {
+      margin: 0;
+      color: rgba(255, 255, 255, .82);
+      font-weight: 700;
+    }
+
+    .cover-foot {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      align-items: end;
+      border-top: 1px solid rgba(255, 255, 255, .28);
+      padding-top: 14px;
+      color: rgba(255, 255, 255, .78);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .cover-foot span:last-child {
+      display: none;
+    }
+
     .carousel-head {
       display: grid;
       grid-template-columns: .65fr 1fr;
@@ -590,10 +719,23 @@
       .topbar-inner,
       .hero-grid,
       .brief-grid,
+      .cover-system,
       .carousel-head,
       .scripts,
       .claim-row {
         grid-template-columns: 1fr;
+      }
+
+      .cover-grid {
+        grid-template-columns: repeat(3, minmax(240px, 1fr));
+        overflow-x: auto;
+        padding-bottom: 10px;
+        scroll-snap-type: x proximity;
+      }
+
+      .cover-card {
+        min-height: 390px;
+        scroll-snap-align: start;
       }
 
       .nav {
@@ -656,6 +798,10 @@
 
       .slides {
         grid-template-columns: repeat(7, minmax(250px, 82vw));
+      }
+
+      .production-specs {
+        grid-template-columns: 1fr;
       }
 
       .photo-stack {
@@ -761,6 +907,59 @@
           <div class="section-head">
             <h2>Три карусели для первого запуска.</h2>
             <p>Каждая карусель отдельная: своя задача, свой ритм, свой CTA. Формат рассчитан на Instagram и адаптацию в PDF/LinkedIn.</p>
+          </div>
+
+          <div class="cover-system" aria-label="Визуальная система обложек каруселей">
+            <article class="production-card">
+              <div>
+                <h3>Серия должна считываться за 2 секунды.</h3>
+                <p>Поэтому у каждой карусели есть свой hook, но общий визуальный код: свет, опора, структурность, минимум медицинской холодности.</p>
+              </div>
+              <div class="production-specs" aria-label="Параметры производства">
+                <span>1080x1350 feed</span>
+                <span>7 слайдов</span>
+                <span>1 идея на слайд</span>
+                <span>1 CTA в финале</span>
+              </div>
+            </article>
+
+            <div class="cover-grid">
+              <article class="cover-card">
+                <img src="assets/afg-hero-opora.png" width="1672" height="941" decoding="async" alt="Обложка карусели про занятие АФГ с образом внутренней опоры">
+                <div class="cover-body">
+                  <span class="cover-index">01 / вход</span>
+                  <div>
+                    <h3>Как проходит занятие АФГ?</h3>
+                    <p>Снимаем тревогу и показываем приватный, бережный формат.</p>
+                    <div class="cover-foot"><span>Hook: не тренировка на износ</span><span>save</span></div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="cover-card">
+                <img src="assets/afg-resource-breath.png" width="1672" height="941" decoding="async" alt="Обложка карусели про ресурс, дыхание и телесную собранность">
+                <div class="cover-body">
+                  <span class="cover-index">02 / эффект</span>
+                  <div>
+                    <h3>Что дает занятие?</h3>
+                    <p>Говорим языком состояний: опора, ясность, ресурс, спокойствие.</p>
+                    <div class="cover-foot"><span>Hook: тело собирается</span><span>share</span></div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="cover-card">
+                <img src="assets/afg-proof-atelier.png" width="1672" height="941" decoding="async" alt="Обложка карусели про доказательный и мировой контекст АФГ">
+                <div class="cover-body">
+                  <span class="cover-index">03 / доверие</span>
+                  <div>
+                    <h3>Почему это не просто тренировка?</h3>
+                    <p>Аккуратно добавляем proof layer без категоричных medical claims.</p>
+                    <div class="cover-foot"><span>Hook: есть контекст</span><span>verify</span></div>
+                  </div>
+                </div>
+              </article>
+            </div>
           </div>
 
           <article class="carousel-block" id="carousel-session">
