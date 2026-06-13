@@ -442,6 +442,8 @@
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 14px;
+      min-width: 0;
+      max-width: 100%;
     }
 
     .cover-card {
@@ -520,6 +522,168 @@
 
     .cover-foot span:last-child {
       display: none;
+    }
+
+    .film-canvas {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 24px;
+      min-width: 0;
+    }
+
+    .film-route {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(7, minmax(0, 1fr));
+      gap: 12px;
+      min-width: 0;
+      max-width: 100%;
+      padding: 20px;
+      border: 1px solid rgba(49, 95, 76, .18);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, .78), rgba(233, 238, 229, .7)),
+        var(--surface);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .film-route::before {
+      content: "";
+      position: absolute;
+      left: 48px;
+      right: 48px;
+      top: 66px;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(49, 95, 76, .1), rgba(49, 95, 76, .5), rgba(168, 86, 61, .42));
+    }
+
+    .film-step {
+      position: relative;
+      min-height: 330px;
+      display: grid;
+      grid-template-rows: auto auto 1fr auto;
+      gap: 12px;
+      padding: 16px;
+      border: 1px solid rgba(49, 95, 76, .16);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, .72);
+      box-shadow: 0 10px 24px rgba(37, 52, 44, .06);
+    }
+
+    .film-time {
+      width: fit-content;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #fff;
+      padding: 6px 10px;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .film-step h3 {
+      font-size: 20px;
+      line-height: 1.08;
+      margin: 0;
+    }
+
+    .film-step p {
+      color: var(--muted);
+      margin: 0;
+      font-size: 14px;
+    }
+
+    .film-phrase {
+      align-self: start;
+      color: var(--accent);
+      font-weight: 900;
+    }
+
+    .film-transition {
+      padding-top: 10px;
+      border-top: 1px solid rgba(49, 95, 76, .14);
+      color: var(--warning);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .film-layers {
+      display: grid;
+      grid-template-columns: 1.08fr .92fr;
+      gap: 18px;
+      align-items: stretch;
+      min-width: 0;
+      max-width: 100%;
+    }
+
+    .world-grid,
+    .handoff-grid {
+      display: grid;
+      gap: 12px;
+      min-width: 0;
+      max-width: 100%;
+    }
+
+    .world-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .world-card,
+    .handoff-card {
+      border: 1px solid rgba(49, 95, 76, .18);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, .72);
+      box-shadow: 0 10px 30px rgba(37, 52, 44, .06);
+      overflow: hidden;
+    }
+
+    .world-card figure {
+      position: relative;
+      height: 138px;
+      margin: 0;
+      overflow: hidden;
+      background: var(--soft);
+    }
+
+    .world-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .world-card figure::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(24, 34, 31, .04), rgba(24, 34, 31, .32));
+    }
+
+    .world-card div,
+    .handoff-card {
+      padding: 16px;
+    }
+
+    .world-card h3,
+    .handoff-card h3 {
+      margin-bottom: 8px;
+      font-size: 19px;
+      line-height: 1.12;
+    }
+
+    .world-card p,
+    .handoff-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .handoff-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .handoff-card strong {
+      color: var(--accent);
     }
 
     .carousel-head {
@@ -720,6 +884,7 @@
       .hero-grid,
       .brief-grid,
       .cover-system,
+      .film-layers,
       .carousel-head,
       .scripts,
       .claim-row {
@@ -733,8 +898,39 @@
         scroll-snap-type: x proximity;
       }
 
+      .film-layers {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
       .cover-card {
         min-height: 390px;
+        scroll-snap-align: start;
+      }
+
+      .film-route {
+        grid-template-columns: repeat(7, minmax(230px, 1fr));
+        overflow-x: auto;
+        scroll-snap-type: x proximity;
+        width: 100%;
+      }
+
+      .film-route::before {
+        display: none;
+      }
+
+      .film-step {
+        scroll-snap-align: start;
+      }
+
+      .world-grid {
+        grid-template-columns: repeat(3, minmax(220px, 1fr));
+        overflow-x: auto;
+        padding-bottom: 10px;
+        scroll-snap-type: x proximity;
+        width: 100%;
+      }
+
+      .world-card {
         scroll-snap-align: start;
       }
 
@@ -834,6 +1030,7 @@
         <nav class="nav" aria-label="Разделы страницы">
           <a href="#brief">Бриф</a>
           <a href="#carousels">Карусели</a>
+          <a href="#film-map">Film map</a>
           <a href="#scripts">Рилсы</a>
           <a href="#claims">Claims</a>
         </nav>
@@ -1009,6 +1206,133 @@
               <div class="slide"><span class="slide-number">7</span><h4>И есть человеческий опыт</h4><p>Отзывы лучше подавать как личные истории, а не как гарантию результата.</p><span class="visual-note">CTA: запросить источники</span></div>
             </div>
           </article>
+        </div>
+      </section>
+
+      <section id="film-map">
+        <div class="wrap film-canvas">
+          <div class="section-head">
+            <h2>Master film map: как серия выглядит в движении.</h2>
+            <p>Общий фильм строится как путь от ощущения к доверию: сначала зритель видит тихую телесную практику, потом понимает механику опоры, затем получает proof layer без медицинских обещаний.</p>
+          </div>
+
+          <div class="film-route" aria-label="Маршрут мастер-фильма на 60-90 секунд">
+            <article class="film-step">
+              <span class="film-time">0-5 сек</span>
+              <h3>Вход</h3>
+              <p class="film-phrase">Войти в тишину тела</p>
+              <p>Дверь, мягкий свет, человек замедляет шаг и выходит из повседневного ритма.</p>
+              <span class="film-transition">Переход: свет заполняет кадр</span>
+            </article>
+
+            <article class="film-step">
+              <span class="film-time">5-14 сек</span>
+              <h3>Настройка</h3>
+              <p class="film-phrase">Не с усилия, а с внимания</p>
+              <p>Стопы, дыхание, ткань, ладонь на ребрах, спокойное сопровождение специалиста.</p>
+              <span class="film-transition">Переход: дыхание становится ритмом</span>
+            </article>
+
+            <article class="film-step">
+              <span class="film-time">14-28 сек</span>
+              <h3>Занятие</h3>
+              <p class="film-phrase">Мягкая сила. Точный ритм.</p>
+              <p>Фрагменты процесса, дозированная нагрузка, пауза после подхода, фокус на оси.</p>
+              <span class="film-transition">Переход: жест превращается в линию</span>
+            </article>
+
+            <article class="film-step">
+              <span class="film-time">28-42 сек</span>
+              <h3>Механика</h3>
+              <p class="film-phrase">Скелет как фундамент</p>
+              <p>Motion-графика оси тела: стопы, таз, позвоночник, голова, вектор нагрузки.</p>
+              <span class="film-transition">Переход: линия уходит в свет</span>
+            </article>
+
+            <article class="film-step">
+              <span class="film-time">42-56 сек</span>
+              <h3>Состояние</h3>
+              <p class="film-phrase">После занятия остается ресурс</p>
+              <p>Выдох, ровная осанка, спокойный портрет, больше пространства в обычном дне.</p>
+              <span class="film-transition">Переход: окно становится белым полем</span>
+            </article>
+
+            <article class="film-step">
+              <span class="film-time">56-70 сек</span>
+              <h3>Proof layer</h3>
+              <p class="film-phrase">Evidence made tactile</p>
+              <p>Кость как живая ткань, карта, источники, тонкие линии, теплое исследовательское ателье.</p>
+              <span class="film-transition">Переход: линии собираются в карту</span>
+            </article>
+
+            <article class="film-step">
+              <span class="film-time">70-90 сек</span>
+              <h3>Возвращение</h3>
+              <p class="film-phrase">Практика, которая возвращает к себе</p>
+              <p>Личный опыт, финальный кадр студии, короткий CTA познакомиться с форматом.</p>
+              <span class="film-transition">Финал: мягкое затемнение</span>
+            </article>
+          </div>
+
+          <div class="film-layers">
+            <div>
+              <div class="section-head">
+                <h2>Визуальные миры.</h2>
+                <p>Фильм ощущается как теплая исследовательская поэма о теле: воздух, ткань, доказательство, рука, дыхание, движение, возвращение к опоре.</p>
+              </div>
+              <div class="world-grid" aria-label="Визуальные миры фильма">
+                <article class="world-card">
+                  <figure><img src="assets/afg-hero-opora.png" width="1672" height="941" loading="lazy" decoding="async" alt="Визуальный мир тела как архитектуры"></figure>
+                  <div><h3>Тело как архитектура</h3><p>Wide air portrait, осанка, световая ось, ощущение возвращения к себе.</p></div>
+                </article>
+                <article class="world-card">
+                  <figure><img src="assets/afg-resource-breath.png" width="1672" height="941" loading="lazy" decoding="async" alt="Визуальный мир дыхания и ресурса"></figure>
+                  <div><h3>Дыхание как среда</h3><p>Ткань, воздух, едва заметные ритмы, невидимое становится видимым.</p></div>
+                </article>
+                <article class="world-card">
+                  <figure><img src="assets/afg-proof-atelier.png" width="1672" height="941" loading="lazy" decoding="async" alt="Визуальный мир доказательного ателье"></figure>
+                  <div><h3>Proof atelier</h3><p>Бумага, стекло, карта, тонкие линии, scientific but not clinical.</p></div>
+                </article>
+                <article class="world-card">
+                  <figure><img src="assets/afg-resource-breath.png" width="1672" height="941" loading="lazy" decoding="async" alt="Макро-мир материалов и контакта"></figure>
+                  <div><h3>Material ritual</h3><p>Швы, поверхности, руки, контакт с материалом, премиальность через тактильность.</p></div>
+                </article>
+                <article class="world-card">
+                  <figure><img src="assets/afg-hero-opora.png" width="1672" height="941" loading="lazy" decoding="async" alt="Обычный день с большей телесной опорой"></figure>
+                  <div><h3>Daily elevation</h3><p>Простые жесты дня: встать, пройти, сделать вдох, почувствовать больше пространства.</p></div>
+                </article>
+                <article class="world-card">
+                  <figure><img src="assets/afg-proof-atelier.png" width="1672" height="941" loading="lazy" decoding="async" alt="Схема серии как живая карта"></figure>
+                  <div><h3>System map</h3><p>Не блок-схема, а живая карта: свет, линия, дыхание и proof соединяют сцены.</p></div>
+                </article>
+              </div>
+            </div>
+
+            <div>
+              <div class="section-head">
+                <h2>Production handoff.</h2>
+                <p>Из этой карты можно собрать master film, 3 Reels и 3 карусели без пересборки смысла с нуля.</p>
+              </div>
+              <div class="handoff-grid" aria-label="Производственная раскладка">
+                <article class="handoff-card">
+                  <h3>Что снять живым футтажом</h3>
+                  <p><strong>Студия, занятие, детали тела, отзыв.</strong> Вход, свет, стопы, руки, ось корпуса, момент настройки, пауза после подхода, 3-5 коротких фраз Стаса.</p>
+                </article>
+                <article class="handoff-card">
+                  <h3>Что делать motion graphics</h3>
+                  <p><strong>Ось, скелет, дыхание, карта, proof layer.</strong> Линия от стоп к голове, мягкие векторы нагрузки, доказательное ателье, источники без агрессивных HUD-оверлеев.</p>
+                </article>
+                <article class="handoff-card">
+                  <h3>Как нарезать серию</h3>
+                  <p><strong>Reels 1:</strong> метод и опора. <strong>Reels 2:</strong> живой опыт. <strong>Reels 3:</strong> триединство. Карусели повторяют те же три смысловые линии.</p>
+                </article>
+                <article class="handoff-card">
+                  <h3>Claims safety</h3>
+                  <p>Не обещать лечение, регенерацию, гормональные эффекты или рост костной плотности. Отзывы показывать как личный опыт, proof-points выпускать только после фактчекинга.</p>
+                </article>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
