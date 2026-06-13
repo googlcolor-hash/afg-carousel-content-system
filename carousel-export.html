@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>АФГ - экспорт карусели 01</title>
+  <meta name="description" content="Экспортные слайды 1080x1350 для карусели АФГ.">
+  <style>
+    :root {
+      --ink: #18221f;
+      --muted: #60706a;
+      --bg: #f4f6f2;
+      --accent: #315f4c;
+      --accent-2: #a8563d;
+      color-scheme: light;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      min-height: 100%;
+      background: #dfe6dd;
+      color: var(--ink);
+      font-family: "Aptos", "Segoe UI", system-ui, -apple-system, sans-serif;
+      letter-spacing: 0;
+    }
+
+    body.export-mode {
+      width: 1080px;
+      height: 1350px;
+      overflow: hidden;
+    }
+
+    .sheet {
+      display: grid;
+      gap: 36px;
+      padding: 36px;
+    }
+
+    .export-mode .sheet {
+      display: block;
+      padding: 0;
+    }
+
+    .slide {
+      position: relative;
+      width: 1080px;
+      height: 1350px;
+      overflow: hidden;
+      background: var(--bg);
+      isolation: isolate;
+    }
+
+    .sheet:not(.single) .slide {
+      box-shadow: 0 24px 70px rgba(24, 34, 31, .18);
+    }
+
+    .bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -3;
+      filter: saturate(.94) contrast(1.03);
+    }
+
+    .slide::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, .12) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, .12) 1px, transparent 1px);
+      background-size: 72px 72px;
+      opacity: .4;
+      mix-blend-mode: soft-light;
+    }
+
+    .slide::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background:
+        linear-gradient(180deg, rgba(24, 34, 31, .2), rgba(24, 34, 31, .08) 38%, rgba(24, 34, 31, .84)),
+        radial-gradient(circle at 22% 16%, rgba(255, 255, 255, .34), transparent 32%);
+    }
+
+    .slide.light::after {
+      background:
+        linear-gradient(180deg, rgba(244, 246, 242, .18), rgba(244, 246, 242, .58) 48%, rgba(24, 34, 31, .74)),
+        radial-gradient(circle at 20% 16%, rgba(255, 255, 255, .42), transparent 32%);
+    }
+
+    .frame {
+      position: absolute;
+      inset: 72px;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      color: #fff;
+    }
+
+    .topline {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 28px;
+      font-size: 28px;
+      font-weight: 900;
+      letter-spacing: .02em;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand::before {
+      content: "";
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      background: #fff;
+      box-shadow: 0 0 0 7px rgba(255, 255, 255, .16);
+    }
+
+    .copy {
+      align-self: end;
+      padding-bottom: 34px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      border: 2px solid rgba(255, 255, 255, .42);
+      border-radius: 999px;
+      padding: 17px 22px;
+      margin-bottom: 34px;
+      background: rgba(255, 255, 255, .14);
+      color: rgba(255, 255, 255, .92);
+      font-size: 24px;
+      font-weight: 900;
+    }
+
+    h1 {
+      max-width: 870px;
+      margin: 0;
+      color: #fff;
+      font-size: 104px;
+      line-height: .94;
+      letter-spacing: 0;
+      text-wrap: balance;
+    }
+
+    .slide-3 h1,
+    .slide-7 h1 {
+      font-size: 94px;
+    }
+
+    p {
+      max-width: 760px;
+      margin: 34px 0 0;
+      color: rgba(255, 255, 255, .9);
+      font-size: 46px;
+      line-height: 1.15;
+      font-weight: 650;
+    }
+
+    .bottom {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 28px;
+    }
+
+    .tag {
+      max-width: 640px;
+      border: 2px solid rgba(255, 255, 255, .38);
+      border-radius: 999px;
+      padding: 18px 24px;
+      background: rgba(255, 255, 255, .14);
+      color: #fff;
+      font-size: 26px;
+      font-weight: 900;
+      line-height: 1.08;
+    }
+
+    .count {
+      color: rgba(255, 255, 255, .82);
+      font-size: 26px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .surface {
+      position: absolute;
+      right: 72px;
+      top: 178px;
+      width: 264px;
+      height: 390px;
+      border-radius: 8px;
+      border: 2px solid rgba(255, 255, 255, .22);
+      background:
+        linear-gradient(160deg, rgba(255, 255, 255, .42), rgba(255, 255, 255, .05)),
+        rgba(255, 255, 255, .12);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 28px 80px rgba(24, 34, 31, .26);
+    }
+
+    .surface::before,
+    .surface::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .72);
+    }
+
+    .surface::before {
+      left: 58px;
+      top: 74px;
+      width: 148px;
+      height: 148px;
+      opacity: .26;
+    }
+
+    .surface::after {
+      left: 84px;
+      bottom: 80px;
+      width: 94px;
+      height: 94px;
+      opacity: .2;
+    }
+
+    .slide-1 .surface,
+    .slide-7 .surface {
+      border-radius: 999px;
+      width: 300px;
+      height: 300px;
+      top: 212px;
+    }
+
+    .slide-2 .surface,
+    .slide-6 .surface {
+      width: 330px;
+      height: 330px;
+      border-radius: 999px 999px 8px 999px;
+    }
+
+    .slide-4 .surface {
+      width: 250px;
+      height: 500px;
+      border-radius: 999px;
+      transform: rotate(8deg);
+    }
+
+    .light .eyebrow,
+    .light .tag {
+      background: rgba(49, 95, 76, .28);
+    }
+
+    @media print {
+      body {
+        background: #fff;
+      }
+
+      .sheet {
+        padding: 0;
+        gap: 0;
+      }
+
+      .slide {
+        page-break-after: always;
+        box-shadow: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="sheet" id="sheet" aria-label="Экспортные слайды карусели АФГ">
+    <section class="slide slide-1" data-slide="1" aria-label="Слайд 1">
+      <img class="bg" src="assets/afg-hero-opora.png" width="1672" height="941" alt="">
+      <div class="surface" aria-hidden="true"></div>
+      <div class="frame">
+        <div class="topline"><span class="brand">АФГ</span><span>01 / 07</span></div>
+        <div class="copy">
+          <span class="eyebrow">Первое знакомство</span>
+          <h1>Как проходит занятие АФГ?</h1>
+          <p>Не тренировка на износ, а короткая встреча тела с собственной опорой.</p>
+        </div>
+        <div class="bottom"><span class="tag">Сохраните, если хотите попробовать мягкий формат</span><span class="count">1080x1350</span></div>
+      </div>
+    </section>
+
+    <section class="slide slide-2 light" data-slide="2" aria-label="Слайд 2">
+      <img class="bg" src="assets/afg-resource-breath.png" width="1672" height="941" alt="">
+      <div class="surface" aria-hidden="true"></div>
+      <div class="frame">
+        <div class="topline"><span class="brand">НАСТРОЙКА</span><span>02 / 07</span></div>
+        <div class="copy">
+          <span class="eyebrow">Перед усилием</span>
+          <h1>Сначала тело замедляется.</h1>
+          <p>Вы замечаете стопы, дыхание, ось и контакт с поверхностью.</p>
+        </div>
+        <div class="bottom"><span class="tag">Без спешки, соревнования и демонстрации силы</span><span class="count">02</span></div>
+      </div>
+    </section>
+
+    <section class="slide slide-3" data-slide="3" aria-label="Слайд 3">
+      <img class="bg" src="assets/afg-proof-atelier.png" width="1672" height="941" alt="">
+      <div class="surface" aria-hidden="true"></div>
+      <div class="frame">
+        <div class="topline"><span class="brand">ОПОРА</span><span>03 / 07</span></div>
+        <div class="copy">
+          <span class="eyebrow">Главный reframe</span>
+          <h1>Скелет работает как фундамент.</h1>
+          <p>В фокусе не только мышцы, а ось, кости и устойчивость тела.</p>
+        </div>
+        <div class="bottom"><span class="tag">Структура тела важна так же, как сила</span><span class="count">03</span></div>
+      </div>
+    </section>
+
+    <section class="slide slide-4" data-slide="4" aria-label="Слайд 4">
+      <img class="bg" src="assets/afg-hero-opora.png" width="1672" height="941" alt="">
+      <div class="surface" aria-hidden="true"></div>
+      <div class="frame">
+        <div class="topline"><span class="brand">ДЕЙСТВИЕ</span><span>04 / 07</span></div>
+        <div class="copy">
+          <span class="eyebrow">В процессе</span>
+          <h1>Нагрузка идет мягко.</h1>
+          <p>Не через рывок, а через контролируемые естественные векторы тела.</p>
+        </div>
+        <div class="bottom"><span class="tag">Бережность здесь не слабость, а часть метода</span><span class="count">04</span></div>
+      </div>
+    </section>
+
+    <section class="slide slide-5" data-slide="5" aria-label="Слайд 5">
+      <img class="bg" src="assets/afg-proof-atelier.png" width="1672" height="941" alt="">
+      <div class="surface" aria-hidden="true"></div>
+      <div class="frame">
+        <div class="topline"><span class="brand">РИТМ</span><span>05 / 07</span></div>
+        <div class="copy">
+          <span class="eyebrow">Не количество</span>
+          <h1>Коротко, но точно.</h1>
+          <p>Цель не выжать максимум, а качественно включиться в несколько подходов.</p>
+        </div>
+        <div class="bottom"><span class="tag">Меньше шума, больше внимания к телу</span><span class="count">05</span></div>
+      </div>
+    </section>
+
+    <section class="slide slide-6 light" data-slide="6" aria-label="Слайд 6">
+      <img class="bg" src="assets/afg-resource-breath.png" width="1672" height="941" alt="">
+      <div class="surface" aria-hidden="true"></div>
+      <div class="frame">
+        <div class="topline"><span class="brand">ПОСЛЕ</span><span>06 / 07</span></div>
+        <div class="copy">
+          <span class="eyebrow">Payoff</span>
+          <h1>После - интеграция.</h1>
+          <p>Тело считывает новый опыт: устойчивость, собранность, спокойствие.</p>
+        </div>
+        <div class="bottom"><span class="tag">Финал ощущается как выдох, а не как отчет</span><span class="count">06</span></div>
+      </div>
+    </section>
+
+    <section class="slide slide-7" data-slide="7" aria-label="Слайд 7">
+      <img class="bg" src="assets/afg-hero-opora.png" width="1672" height="941" alt="">
+      <div class="surface" aria-hidden="true"></div>
+      <div class="frame">
+        <div class="topline"><span class="brand">ШАГ</span><span>07 / 07</span></div>
+        <div class="copy">
+          <span class="eyebrow">Один CTA</span>
+          <h1>АФГ - практика опоры.</h1>
+          <p>Запишитесь на знакомство и почувствуйте, как этот формат звучит в вашем теле.</p>
+        </div>
+        <div class="bottom"><span class="tag">Написать в директ или оставить заявку</span><span class="count">07</span></div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const slide = params.get("slide");
+    const sheet = document.getElementById("sheet");
+
+    if (slide) {
+      document.body.classList.add("export-mode");
+      sheet.classList.add("single");
+      for (const node of [...document.querySelectorAll(".slide")]) {
+        if (node.dataset.slide !== slide) node.remove();
+      }
+    }
+  </script>
+</body>
+</html>

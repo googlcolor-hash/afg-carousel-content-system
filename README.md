@@ -6,6 +6,8 @@ Static GitHub Pages package for the AFG content system.
 
 - Main page: `index.html`
 - Finished carousel example: `carousel-example.html`
+- Production slide renderer: `carousel-export.html`
+- Exported PNG slides: `exports/afg-carousel-01/`
 
 ## Local Preview
 
@@ -27,4 +29,3 @@ Recommended GitHub Pages settings:
 - Source: deploy from branch
 - Branch: `main`
 - Folder: `/root`
-
