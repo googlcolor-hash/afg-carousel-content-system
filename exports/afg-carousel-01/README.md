@@ -22,7 +22,7 @@ Ready-to-publish carousel export.
 ## QA Notes
 
 - Rendered from `carousel-export.html`
+- Alternate all-carousel renderer is available at `../../carousel-production.html?carousel=1`
 - Verified at `1080x1350`
 - Text stayed inside the safe area
 - No medical treatment claims in public copy
-
