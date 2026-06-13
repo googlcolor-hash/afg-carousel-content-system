@@ -124,8 +124,8 @@
 
     .hero-grid {
       display: grid;
-      grid-template-columns: minmax(0, 1.04fr) minmax(320px, .86fr);
-      gap: 56px;
+      grid-template-columns: minmax(0, 1.35fr) minmax(390px, .85fr);
+      gap: 48px;
       align-items: center;
     }
 
@@ -150,9 +150,9 @@
     }
 
     h1 {
-      max-width: 780px;
-      font-size: clamp(42px, 7vw, 92px);
-      line-height: .96;
+      max-width: 760px;
+      font-size: clamp(42px, 6vw, 68px);
+      line-height: .98;
       letter-spacing: 0;
       margin-bottom: 24px;
       text-wrap: balance;
@@ -219,6 +219,7 @@
       border-radius: var(--radius);
       box-shadow: var(--shadow);
       background: var(--soft);
+      margin: 0;
     }
 
     .photo,
@@ -234,10 +235,9 @@
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(circle at 28% 22%, rgba(255, 255, 255, .75), transparent 18%),
-        radial-gradient(circle at 72% 68%, rgba(168, 86, 61, .28), transparent 28%),
-        linear-gradient(135deg, rgba(49, 95, 76, .72), rgba(188, 202, 187, .58));
-      z-index: -2;
+        radial-gradient(circle at 18% 10%, rgba(255, 255, 255, .34), transparent 24%),
+        linear-gradient(180deg, rgba(24, 34, 31, .02), rgba(24, 34, 31, .48));
+      z-index: 1;
     }
 
     .photo::after,
@@ -249,13 +249,25 @@
         linear-gradient(120deg, transparent 0 36%, rgba(255, 255, 255, .3) 36% 38%, transparent 38% 100%),
         repeating-linear-gradient(90deg, rgba(255, 255, 255, .14) 0 1px, transparent 1px 22px);
       mix-blend-mode: screen;
-      opacity: .55;
-      z-index: -1;
+      opacity: .38;
+      z-index: 2;
+    }
+
+    .photo img,
+    .script-image img {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.01);
     }
 
     .photo span,
     .script-image span {
       position: absolute;
+      z-index: 3;
       left: 18px;
       right: 18px;
       bottom: 18px;
@@ -266,6 +278,16 @@
 
     .photo.large {
       grid-row: 1 / 3;
+    }
+
+    .photo.large span {
+      top: 18px;
+      bottom: auto;
+    }
+
+    .photo-stack .photo:nth-child(3) span {
+      top: 18px;
+      bottom: auto;
     }
 
     .proof-panel {
@@ -295,6 +317,7 @@
     section {
       padding: 80px 0;
       border-top: 1px solid rgba(49, 95, 76, .16);
+      scroll-margin-top: 88px;
     }
 
     .section-head {
@@ -457,6 +480,7 @@
     .script-image {
       height: 210px;
       background: var(--soft);
+      margin: 0;
     }
 
     .script-body {
@@ -587,7 +611,7 @@
       }
 
       .hero-visual {
-        min-height: 420px;
+        min-height: 560px;
       }
 
       .proof-panel {
@@ -635,12 +659,23 @@
       }
 
       .photo-stack {
+        position: relative;
+        inset: auto;
         grid-template-columns: 1fr;
         grid-template-rows: 1fr 1fr 1fr;
+        min-height: 560px;
       }
 
       .photo.large {
         grid-row: auto;
+      }
+
+      .proof-panel {
+        position: relative;
+        left: auto;
+        bottom: auto;
+        width: 100%;
+        margin-top: 14px;
       }
     }
   </style>
@@ -674,9 +709,18 @@
           </div>
           <div class="hero-visual" aria-label="Визуальная доска настроения АФГ">
             <div class="photo-stack">
-              <div class="photo large" role="img" aria-label="Спокойный природный свет и телесная практика"><span>Природа и опора</span></div>
-              <div class="photo" role="img" aria-label="Макро-визуализация структуры и света"><span>Кость как живая структура</span></div>
-              <div class="photo" role="img" aria-label="Тихое пространство студии"><span>Студия и внимание</span></div>
+              <figure class="photo large">
+                <img src="assets/afg-hero-opora.png" width="1672" height="941" decoding="async" fetchpriority="high" alt="Премиальный студийный визуал с мягким светом и световой линией опоры вдоль позвоночника">
+                <span>Природа и опора</span>
+              </figure>
+              <figure class="photo">
+                <img src="assets/afg-proof-atelier.png" width="1672" height="941" decoding="async" alt="Предметный научный atelier с костной структурой, картой и точными линиями">
+                <span>Доказательный слой</span>
+              </figure>
+              <figure class="photo">
+                <img src="assets/afg-resource-breath.png" width="1672" height="941" decoding="async" alt="Светлая абстрактная композиция про ресурс, дыхание и вертикальную собранность">
+                <span>Ресурс и дыхание</span>
+              </figure>
             </div>
             <div class="proof-panel">
               <strong>Дизайн-курс</strong>
@@ -777,7 +821,10 @@
           </div>
           <div class="scripts">
             <article class="script-card">
-              <div class="script-image" role="img" aria-label="Абстрактный свет и структура кости для ролика о методике"><span>Эксплейнер: опора</span></div>
+              <figure class="script-image">
+                <img src="assets/afg-hero-opora.png" width="1672" height="941" loading="lazy" decoding="async" alt="Кадр для эксплейнера об оси тела и внутренней опоре">
+                <span>Эксплейнер: опора</span>
+              </figure>
               <div class="script-body">
                 <h3>Рилс 1. Скелет как фундамент</h3>
                 <p>Эксплейнер с природным входом, крафтовой схемой и мягким переходом в макро-мир.</p>
@@ -792,22 +839,28 @@
             </article>
 
             <article class="script-card">
-              <div class="script-image" role="img" aria-label="Тихий интерьер студии для сценария отзыва"><span>Отзыв: живой опыт</span></div>
+              <figure class="script-image">
+                <img src="assets/afg-resource-breath.png" width="1672" height="941" loading="lazy" decoding="async" alt="Кадр для сценария отзыва о ресурсе, спокойствии и телесной собранности">
+                <span>Отзыв: живой опыт</span>
+              </figure>
               <div class="script-body">
                 <h3>Рилс 2. Отзыв Стаса</h3>
                 <p>Живой футтаж, где эффект раскрывается через опыт, а не через объяснение.</p>
                 <div class="beats">
-                  <div class="beat"><span class="time">0-3с</span><p>Стас в студии: “Я сначала не очень понимал, что это будет”.</p></div>
-                  <div class="beat"><span class="time">3-10с</span><p>Фрагменты занятия: “Здесь нет ощущения, что тебя загоняют. Все точно и спокойно”.</p></div>
-                  <div class="beat"><span class="time">10-18с</span><p>Крупные детали: “За короткое время тело как будто собирается”.</p></div>
-                  <div class="beat"><span class="time">18-30с</span><p>После занятия: “Я стал лучше чувствовать, где у меня центр и опора”.</p></div>
-                  <div class="beat"><span class="time">30-40с</span><p>Финал: “Мне это дало ощущение ресурса. Поэтому я продолжаю”.</p></div>
+                  <div class="beat"><span class="time">0-3с</span><p>Стас в студии: &laquo;Я сначала не очень понимал, что это будет&raquo;.</p></div>
+                  <div class="beat"><span class="time">3-10с</span><p>Фрагменты занятия: &laquo;Здесь нет ощущения, что тебя загоняют. Все точно и спокойно&raquo;.</p></div>
+                  <div class="beat"><span class="time">10-18с</span><p>Крупные детали: &laquo;За короткое время тело как будто собирается&raquo;.</p></div>
+                  <div class="beat"><span class="time">18-30с</span><p>После занятия: &laquo;Я стал лучше чувствовать, где у меня центр и опора&raquo;.</p></div>
+                  <div class="beat"><span class="time">30-40с</span><p>Финал: &laquo;Мне это дало ощущение ресурса. Поэтому я продолжаю&raquo;.</p></div>
                 </div>
               </div>
             </article>
 
             <article class="script-card">
-              <div class="script-image" role="img" aria-label="Природный и телесный образ для художественного рилса"><span>Триединство</span></div>
+              <figure class="script-image">
+                <img src="assets/afg-proof-atelier.png" width="1672" height="941" loading="lazy" decoding="async" alt="Кадр для художественного ролика о целостности, науке и внутреннем устройстве тела">
+                <span>Триединство</span>
+              </figure>
               <div class="script-body">
                 <h3>Рилс 3. Триединство</h3>
                 <p>Художественный ролик о том, как эпоха крайностей разделила тело, разум и дух.</p>
