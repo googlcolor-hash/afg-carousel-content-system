@@ -1,0 +1,867 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>АФГ - контент-пакет</title>
+  <meta name="description" content="Три карусели и сценарии роликов для премиального контента АФГ.">
+  <style>
+    :root {
+      --bg: #f4f6f2;
+      --surface: #ffffff;
+      --surface-2: #e9eee5;
+      --ink: #18221f;
+      --muted: #60706a;
+      --line: #cad4cc;
+      --accent: #315f4c;
+      --accent-2: #a8563d;
+      --soft: #dce5dc;
+      --warning: #8a4f2b;
+      --shadow: 0 22px 60px rgba(37, 52, 44, .12);
+      --radius: 8px;
+      color-scheme: light;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Aptos", "Segoe UI", system-ui, -apple-system, sans-serif;
+      line-height: 1.5;
+      letter-spacing: 0;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .08;
+      background-image:
+        linear-gradient(rgba(24, 34, 31, .12) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(24, 34, 31, .12) 1px, transparent 1px);
+      background-size: 64px 64px;
+      z-index: 0;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+    }
+
+    .wrap {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid rgba(49, 95, 76, .18);
+      background: rgba(244, 246, 242, .92);
+      backdrop-filter: blur(18px);
+    }
+
+    .topbar-inner {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 24px;
+      min-height: 70px;
+    }
+
+    .brand {
+      font-weight: 800;
+      letter-spacing: .02em;
+      font-size: 18px;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .nav a,
+    .chip {
+      border: 1px solid rgba(49, 95, 76, .18);
+      border-radius: 999px;
+      padding: 9px 13px;
+      color: var(--muted);
+      background: rgba(255, 255, 255, .48);
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    .chip {
+      color: var(--accent);
+      border-color: rgba(49, 95, 76, .26);
+      background: rgba(220, 229, 220, .78);
+      font-weight: 700;
+    }
+
+    .hero {
+      min-height: calc(100dvh - 70px);
+      display: grid;
+      align-items: center;
+      padding: 64px 0 72px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.04fr) minmax(320px, .86fr);
+      gap: 56px;
+      align-items: center;
+    }
+
+    .kicker {
+      display: inline-flex;
+      width: fit-content;
+      border-radius: 999px;
+      border: 1px solid rgba(49, 95, 76, .24);
+      padding: 9px 14px;
+      color: var(--accent);
+      background: rgba(255, 255, 255, .54);
+      font-size: 13px;
+      font-weight: 800;
+      margin-bottom: 22px;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1 {
+      max-width: 780px;
+      font-size: clamp(42px, 7vw, 92px);
+      line-height: .96;
+      letter-spacing: 0;
+      margin-bottom: 24px;
+      text-wrap: balance;
+    }
+
+    .lead {
+      color: var(--muted);
+      font-size: clamp(18px, 2.2vw, 24px);
+      max-width: 650px;
+      margin-bottom: 28px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 0 18px;
+      border-radius: 999px;
+      border: 1px solid var(--accent);
+      background: var(--accent);
+      color: #fff;
+      font-weight: 800;
+      transition: transform .2s ease, background .2s ease;
+      white-space: nowrap;
+    }
+
+    .button.secondary {
+      background: transparent;
+      color: var(--accent);
+    }
+
+    .button:hover {
+      transform: translateY(-1px);
+    }
+
+    .button:active {
+      transform: translateY(1px);
+    }
+
+    .hero-visual {
+      position: relative;
+      min-height: 560px;
+    }
+
+    .photo-stack {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      grid-template-columns: 1fr .72fr;
+      grid-template-rows: 1fr .9fr;
+      gap: 14px;
+    }
+
+    .photo {
+      overflow: hidden;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      background: var(--soft);
+    }
+
+    .photo,
+    .script-image {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+    }
+
+    .photo::before,
+    .script-image::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 28% 22%, rgba(255, 255, 255, .75), transparent 18%),
+        radial-gradient(circle at 72% 68%, rgba(168, 86, 61, .28), transparent 28%),
+        linear-gradient(135deg, rgba(49, 95, 76, .72), rgba(188, 202, 187, .58));
+      z-index: -2;
+    }
+
+    .photo::after,
+    .script-image::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(120deg, transparent 0 36%, rgba(255, 255, 255, .3) 36% 38%, transparent 38% 100%),
+        repeating-linear-gradient(90deg, rgba(255, 255, 255, .14) 0 1px, transparent 1px 22px);
+      mix-blend-mode: screen;
+      opacity: .55;
+      z-index: -1;
+    }
+
+    .photo span,
+    .script-image span {
+      position: absolute;
+      left: 18px;
+      right: 18px;
+      bottom: 18px;
+      color: rgba(255, 255, 255, .92);
+      font-weight: 800;
+      text-shadow: 0 1px 16px rgba(24, 34, 31, .42);
+    }
+
+    .photo.large {
+      grid-row: 1 / 3;
+    }
+
+    .proof-panel {
+      position: absolute;
+      left: -28px;
+      bottom: 28px;
+      width: min(360px, 88%);
+      border: 1px solid rgba(49, 95, 76, .22);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, .92);
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .proof-panel strong {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 18px;
+    }
+
+    .proof-panel p {
+      color: var(--muted);
+      margin: 0;
+      font-size: 14px;
+    }
+
+    section {
+      padding: 80px 0;
+      border-top: 1px solid rgba(49, 95, 76, .16);
+    }
+
+    .section-head {
+      display: grid;
+      gap: 14px;
+      max-width: 780px;
+      margin-bottom: 34px;
+    }
+
+    .section-head h2 {
+      font-size: clamp(32px, 4.8vw, 58px);
+      line-height: 1.02;
+      letter-spacing: 0;
+      margin: 0;
+      text-wrap: balance;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      font-size: 18px;
+      max-width: 680px;
+      margin: 0;
+    }
+
+    .brief-grid {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 18px;
+    }
+
+    .panel,
+    .slide,
+    .script-card,
+    .claim-row {
+      border: 1px solid rgba(49, 95, 76, .18);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, .72);
+      box-shadow: 0 10px 30px rgba(37, 52, 44, .06);
+    }
+
+    .panel {
+      padding: 22px;
+    }
+
+    .panel h3 {
+      margin-bottom: 12px;
+      font-size: 22px;
+    }
+
+    .panel p,
+    .panel li {
+      color: var(--muted);
+    }
+
+    .panel ul {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .panel li {
+      padding: 12px;
+      background: var(--surface-2);
+      border-radius: var(--radius);
+    }
+
+    .carousel-block {
+      margin-top: 30px;
+      padding-top: 34px;
+      border-top: 1px solid rgba(49, 95, 76, .16);
+    }
+
+    .carousel-head {
+      display: grid;
+      grid-template-columns: .65fr 1fr;
+      gap: 24px;
+      align-items: end;
+      margin-bottom: 18px;
+    }
+
+    .carousel-head h3 {
+      font-size: clamp(26px, 4vw, 44px);
+      line-height: 1.03;
+      margin-bottom: 0;
+    }
+
+    .carousel-head p {
+      color: var(--muted);
+      margin-bottom: 0;
+    }
+
+    .slides {
+      display: grid;
+      grid-template-columns: repeat(7, minmax(220px, 1fr));
+      gap: 14px;
+      overflow-x: auto;
+      padding-bottom: 10px;
+      scroll-snap-type: x proximity;
+    }
+
+    .slide {
+      min-height: 320px;
+      padding: 18px;
+      display: grid;
+      grid-template-rows: auto auto 1fr auto;
+      gap: 12px;
+      scroll-snap-align: start;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, .92), rgba(255, 255, 255, .7)),
+        var(--surface);
+    }
+
+    .slide-number {
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      background: var(--accent);
+      color: #fff;
+      font-weight: 900;
+      font-size: 14px;
+    }
+
+    .slide h4 {
+      margin: 0;
+      font-size: 23px;
+      line-height: 1.12;
+      letter-spacing: 0;
+    }
+
+    .slide p {
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .visual-note {
+      align-self: end;
+      padding-top: 12px;
+      border-top: 1px solid rgba(49, 95, 76, .14);
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .scripts {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .script-card {
+      overflow: hidden;
+      background: var(--surface);
+    }
+
+    .script-image {
+      height: 210px;
+      background: var(--soft);
+    }
+
+    .script-body {
+      padding: 20px;
+    }
+
+    .script-body h3 {
+      margin-bottom: 8px;
+      font-size: 24px;
+    }
+
+    .beats {
+      display: grid;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .beat {
+      display: grid;
+      grid-template-columns: 72px 1fr;
+      gap: 12px;
+      padding: 12px 0;
+      border-top: 1px solid rgba(49, 95, 76, .14);
+    }
+
+    .time {
+      color: var(--accent);
+      font-weight: 900;
+      font-size: 13px;
+    }
+
+    .beat p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .claims {
+      display: grid;
+      gap: 12px;
+    }
+
+    .disclaimer {
+      margin-top: 22px;
+      border: 1px solid rgba(138, 79, 43, .28);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, .64);
+      padding: 20px;
+    }
+
+    .disclaimer h3 {
+      margin-bottom: 10px;
+      font-size: 22px;
+    }
+
+    .disclaimer p {
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .disclaimer p:last-child {
+      margin-bottom: 0;
+    }
+
+    .claim-row {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr .75fr;
+      gap: 18px;
+      padding: 18px;
+    }
+
+    .claim-row strong {
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .claim-row p {
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .status {
+      color: var(--warning);
+      font-weight: 900;
+    }
+
+    .footer {
+      padding: 36px 0 60px;
+      color: var(--muted);
+    }
+
+    .footer strong {
+      color: var(--ink);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      .button {
+        transition: none;
+      }
+    }
+
+    @media (max-width: 980px) {
+      .topbar-inner,
+      .hero-grid,
+      .brief-grid,
+      .carousel-head,
+      .scripts,
+      .claim-row {
+        grid-template-columns: 1fr;
+      }
+
+      .nav {
+        justify-content: flex-start;
+        overflow-x: auto;
+        padding-bottom: 6px;
+      }
+
+      .topbar-inner {
+        padding: 12px 0;
+      }
+
+      .hero {
+        padding: 44px 0 56px;
+      }
+
+      .hero-visual {
+        min-height: 420px;
+      }
+
+      .proof-panel {
+        left: 14px;
+      }
+
+      .panel ul {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .topbar {
+        position: static;
+      }
+
+      .topbar-inner {
+        gap: 10px;
+        min-height: auto;
+      }
+
+      .nav {
+        flex-wrap: nowrap;
+        width: 100%;
+      }
+
+      .chip {
+        display: none;
+      }
+
+      .wrap {
+        width: min(100% - 24px, 1180px);
+      }
+
+      h1 {
+        font-size: clamp(38px, 12vw, 52px);
+      }
+
+      section {
+        padding: 58px 0;
+      }
+
+      .slides {
+        grid-template-columns: repeat(7, minmax(250px, 82vw));
+      }
+
+      .photo-stack {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+      }
+
+      .photo.large {
+        grid-row: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="topbar">
+      <div class="wrap topbar-inner">
+        <a class="brand" href="#top">АФГ content system</a>
+        <nav class="nav" aria-label="Разделы страницы">
+          <a href="#brief">Бриф</a>
+          <a href="#carousels">Карусели</a>
+          <a href="#scripts">Рилсы</a>
+          <a href="#claims">Claims</a>
+        </nav>
+        <span class="chip">3 карусели + 3 сценария</span>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="wrap hero-grid">
+          <div>
+            <span class="kicker">Контент из Miro переработан в production-страницу</span>
+            <h1>АФГ: практика внутренней опоры.</h1>
+            <p class="lead">Три карусели и три ролика в одном маршруте: сначала опыт занятия, затем эффект, потом доказательный слой.</p>
+            <div class="hero-actions">
+              <a class="button" href="#carousels">Смотреть карусели</a>
+              <a class="button secondary" href="#claims">Проверить claims</a>
+            </div>
+          </div>
+          <div class="hero-visual" aria-label="Визуальная доска настроения АФГ">
+            <div class="photo-stack">
+              <div class="photo large" role="img" aria-label="Спокойный природный свет и телесная практика"><span>Природа и опора</span></div>
+              <div class="photo" role="img" aria-label="Макро-визуализация структуры и света"><span>Кость как живая структура</span></div>
+              <div class="photo" role="img" aria-label="Тихое пространство студии"><span>Студия и внимание</span></div>
+            </div>
+            <div class="proof-panel">
+              <strong>Дизайн-курс</strong>
+              <p>Премиально, тепло, много воздуха. Не медицинская холодность, а точная телесная ясность.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="brief">
+        <div class="wrap">
+          <div class="section-head">
+            <h2>Сначала мягкое доверие, потом доказательства.</h2>
+            <p>Такой порядок снижает сопротивление: человек сначала понимает, что будет происходить с ним, и только потом встречается с научным и мировым контекстом.</p>
+          </div>
+          <div class="brief-grid">
+            <article class="panel">
+              <h3>Смысловая стратегия</h3>
+              <ul>
+                <li><strong>Вход:</strong> занятие безопасное, приватное, понятное.</li>
+                <li><strong>Опора:</strong> скелет как фундамент и проводник нагрузки.</li>
+                <li><strong>Эффект:</strong> ресурс, ясность, снятие напряжения.</li>
+                <li><strong>Доверие:</strong> исследования и мировая практика только после объяснения.</li>
+              </ul>
+            </article>
+            <article class="panel">
+              <h3>Тон</h3>
+              <p>Говорим не как клиника и не как эзотерический манифест. Тон: спокойный, точный, теплый, без давления и без обещаний лечения.</p>
+              <p><strong>Рабочая формула:</strong> АФГ - телесная практика, где внимание, осевая нагрузка и спокойная концентрация помогают вернуть телу ощущение опоры.</p>
+              <p><strong>Важно:</strong> публичные тексты держим в зоне wellness, movement, relaxation, body awareness. Биомаркеры, лечение и институциональные claims выносим в верификацию.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="carousels">
+        <div class="wrap">
+          <div class="section-head">
+            <h2>Три карусели для первого запуска.</h2>
+            <p>Каждая карусель отдельная: своя задача, свой ритм, свой CTA. Формат рассчитан на Instagram и адаптацию в PDF/LinkedIn.</p>
+          </div>
+
+          <article class="carousel-block" id="carousel-session">
+            <div class="carousel-head">
+              <h3>Карусель 1. Как проходит занятие?</h3>
+              <p>Самая первая публикация в серии. Она снимает тревогу, показывает приватность и объясняет механику без перегруза.</p>
+            </div>
+            <div class="slides" aria-label="Слайды карусели Как проходит занятие">
+              <div class="slide"><span class="slide-number">1</span><h4>Как проходит занятие АФГ?</h4><p>Не тренировка на износ, а короткая встреча тела с собственной опорой.</p><span class="visual-note">Визуал: человек в тихой студии</span></div>
+              <div class="slide"><span class="slide-number">2</span><h4>Сначала тело настраивается</h4><p>Важно замедлиться: почувствовать стопы, дыхание, ось и контакт с собой.</p><span class="visual-note">Визуал: линия позвоночника и пола</span></div>
+              <div class="slide"><span class="slide-number">3</span><h4>Скелет как фундамент</h4><p>В фокусе не только мышцы, а глубинная опора: кости, ось, устойчивость.</p><span class="visual-note">Визуал: кость и архитектура</span></div>
+              <div class="slide"><span class="slide-number">4</span><h4>Мягкая осевая нагрузка</h4><p>Нагрузка идет бережно и контролируемо, через естественные векторы тела.</p><span class="visual-note">Визуал: крупная деталь руки или стопы</span></div>
+              <div class="slide"><span class="slide-number">5</span><h4>Коротко, но точно</h4><p>Важно не выжать максимум, а качественно включиться в несколько точных подходов.</p><span class="visual-note">Визуал: точка усилия</span></div>
+              <div class="slide"><span class="slide-number">6</span><h4>После - интеграция</h4><p>Тело считывает новый опыт: устойчивость, собранность, спокойствие.</p><span class="visual-note">Визуал: мягкий выдох</span></div>
+              <div class="slide"><span class="slide-number">7</span><h4>АФГ - практика опоры</h4><p>Приходите познакомиться с форматом и почувствовать, как он звучит в вашем теле.</p><span class="visual-note">CTA: записаться на знакомство</span></div>
+            </div>
+          </article>
+
+          <article class="carousel-block" id="carousel-benefits">
+            <div class="carousel-head">
+              <h3>Карусель 2. Что дает занятие?</h3>
+              <p>Здесь продаем не чудо-эффекты, а понятные состояния: опора, ресурс, снижение внутреннего давления, ясность.</p>
+            </div>
+            <div class="slides" aria-label="Слайды карусели Что дает занятие">
+              <div class="slide"><span class="slide-number">1</span><h4>Что может дать занятие?</h4><p>Не обещание исправить все, а возможность вернуть телу ощущение опоры.</p><span class="visual-note">Визуал: до и после через свет</span></div>
+              <div class="slide"><span class="slide-number">2</span><h4>Больше телесной собранности</h4><p>Когда скелет воспринимается как фундамент, движения становятся спокойнее и точнее.</p><span class="visual-note">Визуал: архитектура и кость</span></div>
+              <div class="slide"><span class="slide-number">3</span><h4>Ось вместо хаоса</h4><p>Мягкая нагрузка помогает телу заметить вертикаль: стопы, таз, позвоночник, плечи, голову.</p><span class="visual-note">Визуал: линия оси</span></div>
+              <div class="slide"><span class="slide-number">4</span><h4>Психика чувствует физику</h4><p>Когда тело ощущает опору, внутреннее состояние тоже может становиться устойчивее.</p><span class="visual-note">Визуал: человек и природный ритм</span></div>
+              <div class="slide"><span class="slide-number">5</span><h4>Ресурс без давления</h4><p>Формат не требует изматывать себя. Его ценность в точности и уважении к состоянию.</p><span class="visual-note">Визуал: теплый поток света</span></div>
+              <div class="slide"><span class="slide-number">6</span><h4>Глубина приходит через регулярность</h4><p>Один опыт может быть заметным, но глубина раскрывается через последовательность.</p><span class="visual-note">Визуал: недельный ритм</span></div>
+              <div class="slide"><span class="slide-number">7</span><h4>Почувствовать лучше, чем объяснять</h4><p>Запишитесь на занятие АФГ и сравните свое состояние до и после практики.</p><span class="visual-note">CTA: сохранить и записаться</span></div>
+            </div>
+          </article>
+
+          <article class="carousel-block" id="carousel-proof">
+            <div class="carousel-head">
+              <h3>Карусель 3. Доказательства</h3>
+              <p>Доказательный слой нужен, но его важно подавать аккуратно: без категоричных медицинских обещаний и только с верификацией источников.</p>
+            </div>
+            <div class="slides" aria-label="Слайды карусели Доказательства">
+              <div class="slide"><span class="slide-number">1</span><h4>Почему это не просто новая тренировка?</h4><p>У метода есть контекст: наука о нагрузке, мировая практика и реальные истории людей.</p><span class="visual-note">Визуал: строгая обложка</span></div>
+              <div class="slide"><span class="slide-number">2</span><h4>Кость - живая ткань</h4><p>Она реагирует на нагрузку, особенно когда та точная, дозированная и безопасно организованная.</p><span class="visual-note">Визуал: кость как живой орган</span></div>
+              <div class="slide"><span class="slide-number">3</span><h4>OsteoStrong как proof layer</h4><p>В мире есть направление студий, построенных вокруг остеогенной нагрузки и работы с опорой тела.</p><span class="visual-note">Статус: проверить формулировку</span></div>
+              <div class="slide"><span class="slide-number">4</span><h4>Страны, студии, признание</h4><p>Формат развивается в разных странах как часть wellness-подхода к ресурсу тела.</p><span class="visual-note">Визуал: карта мира, тонкие линии</span></div>
+              <div class="slide"><span class="slide-number">5</span><h4>Профилактика и качество жизни</h4><p>На отдельных рынках похожие практики рассматриваются в логике поддержки активного долголетия.</p><span class="visual-note">Статус: высокая проверка</span></div>
+              <div class="slide"><span class="slide-number">6</span><h4>Космос как научный контекст</h4><p>Тема костной плотности в невесомости показывает, почему нагрузка костной ткани важна для науки.</p><span class="visual-note">Визуал: космос и опора</span></div>
+              <div class="slide"><span class="slide-number">7</span><h4>И есть человеческий опыт</h4><p>Отзывы лучше подавать как личные истории, а не как гарантию результата.</p><span class="visual-note">CTA: запросить источники</span></div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="scripts">
+        <div class="wrap">
+          <div class="section-head">
+            <h2>Три сценария роликов.</h2>
+            <p>Каждый сценарий держит отдельную задачу: объяснить метод, показать живой опыт, раскрыть философию тела, разума и духа.</p>
+          </div>
+          <div class="scripts">
+            <article class="script-card">
+              <div class="script-image" role="img" aria-label="Абстрактный свет и структура кости для ролика о методике"><span>Эксплейнер: опора</span></div>
+              <div class="script-body">
+                <h3>Рилс 1. Скелет как фундамент</h3>
+                <p>Эксплейнер с природным входом, крафтовой схемой и мягким переходом в макро-мир.</p>
+                <div class="beats">
+                  <div class="beat"><span class="time">0-3с</span><p>АФГ - это не про изнуряющую тренировку. Сначала мы возвращаем внимание к опоре.</p></div>
+                  <div class="beat"><span class="time">3-10с</span><p>Стопы, дыхание, ось. Камера идет от земли к позвоночнику.</p></div>
+                  <div class="beat"><span class="time">10-22с</span><p>Скелет как фундамент. Через него тело лучше считывает устойчивость.</p></div>
+                  <div class="beat"><span class="time">22-35с</span><p>Нагрузка дозируется бережно: без рывков, без перегруза, с точным сопровождением.</p></div>
+                  <div class="beat"><span class="time">35-45с</span><p>Лучше всего это не объяснять, а почувствовать. Финал на студии и спокойном логотипе.</p></div>
+                </div>
+              </div>
+            </article>
+
+            <article class="script-card">
+              <div class="script-image" role="img" aria-label="Тихий интерьер студии для сценария отзыва"><span>Отзыв: живой опыт</span></div>
+              <div class="script-body">
+                <h3>Рилс 2. Отзыв Стаса</h3>
+                <p>Живой футтаж, где эффект раскрывается через опыт, а не через объяснение.</p>
+                <div class="beats">
+                  <div class="beat"><span class="time">0-3с</span><p>Стас в студии: “Я сначала не очень понимал, что это будет”.</p></div>
+                  <div class="beat"><span class="time">3-10с</span><p>Фрагменты занятия: “Здесь нет ощущения, что тебя загоняют. Все точно и спокойно”.</p></div>
+                  <div class="beat"><span class="time">10-18с</span><p>Крупные детали: “За короткое время тело как будто собирается”.</p></div>
+                  <div class="beat"><span class="time">18-30с</span><p>После занятия: “Я стал лучше чувствовать, где у меня центр и опора”.</p></div>
+                  <div class="beat"><span class="time">30-40с</span><p>Финал: “Мне это дало ощущение ресурса. Поэтому я продолжаю”.</p></div>
+                </div>
+              </div>
+            </article>
+
+            <article class="script-card">
+              <div class="script-image" role="img" aria-label="Природный и телесный образ для художественного рилса"><span>Триединство</span></div>
+              <div class="script-body">
+                <h3>Рилс 3. Триединство</h3>
+                <p>Художественный ролик о том, как эпоха крайностей разделила тело, разум и дух.</p>
+                <div class="beats">
+                  <div class="beat"><span class="time">0-4с</span><p>Мы привыкли чинить себя по частям: тело отдельно, голову отдельно, дух отдельно.</p></div>
+                  <div class="beat"><span class="time">4-14с</span><p>Показываем крайности: тренировка, анализ, поиск смысла как разорванные сцены.</p></div>
+                  <div class="beat"><span class="time">14-26с</span><p>Баланс не находится в крайностях. Нужна гармония тела, разума и духа.</p></div>
+                  <div class="beat"><span class="time">26-40с</span><p>АФГ как практика внимания, где тело становится входом к целостному состоянию.</p></div>
+                  <div class="beat"><span class="time">40-52с</span><p>Вернуться к себе можно тише, чем мы привыкли думать.</p></div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="claims">
+        <div class="wrap">
+          <div class="section-head">
+            <h2>Claims, которые нельзя выпускать без проверки.</h2>
+            <p>Самые сильные тезисы лучше сохранить, но перевести в доказательную таблицу: источник, точная формулировка, уровень риска.</p>
+          </div>
+          <div class="claims">
+            <div class="claim-row">
+              <div><strong>Регенерация, стволовые клетки, гормоны</strong><p>В рекламе это звучит как medical efficacy claim и требует сильной доказательной базы.</p></div>
+              <div><strong>Безопаснее</strong><p>Практика направлена на телесную осознанность, расслабление и восстановление ощущения подвижности.</p></div>
+              <div><span class="status">Нужна верификация</span></div>
+            </div>
+            <div class="claim-row">
+              <div><strong>Гарвард, Эмори, 100+ публикаций</strong><p>Нужно подтвердить, кто именно изучал, что именно изучал и где опубликовано.</p></div>
+              <div><strong>Безопаснее</strong><p>Мы собрали библиотеку материалов по смежным темам: движению, балансу, мобильности и восстановлению.</p></div>
+              <div><span class="status">Высокий риск</span></div>
+            </div>
+            <div class="claim-row">
+              <div><strong>Страхование США, космос, 200+ студий</strong><p>Это сильные proof-points, но они должны быть точными юридически и фактически.</p></div>
+              <div><strong>Безопаснее</strong><p>Показывать как мировой контекст и интерес к принципам нагрузки, без implied endorsement.</p></div>
+              <div><span class="status">Проверить до дизайна</span></div>
+            </div>
+          </div>
+          <aside class="disclaimer">
+            <h3>Дисклеймер для финальной версии</h3>
+            <p>АФГ описывается как wellness- и двигательная практика. Материалы не предназначены для диагностики, лечения, профилактики или излечения заболеваний.</p>
+            <p>Информация носит образовательный характер и не заменяет консультацию врача. Индивидуальные результаты могут отличаться.</p>
+            <p>Отзывы отражают личный опыт участников и не гарантируют аналогичный результат.</p>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="wrap">
+        <p><strong>Production note:</strong> страница сделана как рабочий черновик для копирайтинга, дизайна и монтажа. Перед публикацией нужен фактчекинг медицинских и научных утверждений.</p>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
