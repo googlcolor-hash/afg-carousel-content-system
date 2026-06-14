@@ -9,6 +9,7 @@ Static GitHub Pages package for the AFG content system.
 - Main page: `index.html`
 - Finished carousel example: `carousel-example.html`
 - Production handoff: `production-handoff.html`
+- Visual prompts: `visual-prompts.md`
 - Legacy carousel 01 renderer: `carousel-export.html`
 - Production renderer for all 3 carousels: `carousel-production.html`
 - Exported PNG slides:
