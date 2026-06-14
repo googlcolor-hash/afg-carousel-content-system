@@ -4,8 +4,11 @@ Static GitHub Pages package for the AFG content system.
 
 ## Pages
 
+- Live Pages root: `https://googlcolor-hash.github.io/afg-carousel-content-system/`
+- Live handoff: `https://googlcolor-hash.github.io/afg-carousel-content-system/production-handoff.html`
 - Main page: `index.html`
 - Finished carousel example: `carousel-example.html`
+- Production handoff: `production-handoff.html`
 - Legacy carousel 01 renderer: `carousel-export.html`
 - Production renderer for all 3 carousels: `carousel-production.html`
 - Exported PNG slides:
@@ -25,6 +28,7 @@ Then open:
 http://127.0.0.1:4173/index.html
 http://127.0.0.1:4173/carousel-example.html
 http://127.0.0.1:4173/carousel-production.html
+http://127.0.0.1:4173/production-handoff.html
 ```
 
 ## Publish Notes
