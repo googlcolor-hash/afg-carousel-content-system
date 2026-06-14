@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>АФГ - заполненные карусели</title>
+  <meta name="description" content="Галерея готовых PNG-экспортов трех каруселей АФГ.">
+  <style>
+    :root {
+      --bg: #f4f6f2;
+      --ink: #18221f;
+      --muted: #61716b;
+      --surface: #ffffff;
+      --line: rgba(24, 34, 31, .13);
+      --accent: #315f4c;
+      --accent-2: #a8563d;
+      color-scheme: light;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Aptos", "Segoe UI", system-ui, -apple-system, sans-serif;
+      letter-spacing: 0;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    .wrap { width: min(1240px, calc(100% - 40px)); margin: 0 auto; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid var(--line);
+      background: rgba(244, 246, 242, .92);
+      backdrop-filter: blur(18px);
+    }
+
+    .topbar-inner {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 22px;
+      min-height: 70px;
+    }
+
+    .brand { font-size: 18px; font-weight: 900; color: var(--accent); }
+
+    .nav { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; }
+
+    .nav a,
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      border: 1px solid rgba(49, 95, 76, .22);
+      border-radius: 8px;
+      padding: 10px 13px;
+      background: #fff;
+      color: var(--accent);
+      font-size: 14px;
+      font-weight: 850;
+      white-space: nowrap;
+    }
+
+    .button.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+    .chip {
+      border-radius: 999px;
+      padding: 9px 13px;
+      background: #e3eae1;
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    main { padding: 68px 0 88px; }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(320px, .7fr);
+      gap: 40px;
+      align-items: end;
+      margin-bottom: 54px;
+    }
+
+    .kicker {
+      display: inline-flex;
+      border: 1px solid rgba(49, 95, 76, .24);
+      border-radius: 999px;
+      padding: 9px 12px;
+      background: #fff;
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    h1, h2, h3, p { margin: 0; }
+
+    h1 {
+      max-width: 860px;
+      margin-top: 22px;
+      font-size: clamp(54px, 9vw, 112px);
+      line-height: .9;
+      text-wrap: balance;
+    }
+
+    .lead {
+      max-width: 760px;
+      margin-top: 24px;
+      color: var(--muted);
+      font-size: clamp(20px, 2.2vw, 27px);
+      line-height: 1.24;
+      font-weight: 650;
+    }
+
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 22px;
+      background: #fff;
+    }
+
+    .panel-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      border-top: 1px solid var(--line);
+      padding-top: 12px;
+      margin-top: 12px;
+      color: var(--muted);
+      font-weight: 750;
+    }
+
+    .panel-row strong { color: var(--ink); }
+
+    section { margin-top: 58px; }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, .8fr) minmax(280px, .55fr);
+      gap: 26px;
+      align-items: end;
+      margin-bottom: 20px;
+    }
+
+    .section-head h2 {
+      font-size: clamp(36px, 5vw, 64px);
+      line-height: .95;
+      text-wrap: balance;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.45;
+      font-weight: 650;
+    }
+
+    .slide-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .slide-card {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: 0 18px 50px rgba(24, 34, 31, .08);
+    }
+
+    .slide-card img {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      background: #dfe6dd;
+    }
+
+    .slide-card span {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 12px 13px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 850;
+    }
+
+    .section-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+
+    .page-nav {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 64px;
+    }
+
+    .page-nav a {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px;
+      background: #fff;
+      color: var(--muted);
+      font-weight: 750;
+    }
+
+    .page-nav strong { display: block; color: var(--accent); font-size: 18px; }
+
+    footer { border-top: 1px solid var(--line); padding: 28px 0; color: var(--muted); font-weight: 650; }
+
+    @media (max-width: 980px) {
+      .slide-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 760px) {
+      .topbar-inner, .hero, .section-head, .page-nav { grid-template-columns: 1fr; }
+      .topbar-inner { padding: 16px 0; }
+      .nav { justify-content: flex-start; }
+      .slide-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a class="brand" href="site-map.html">АФГ system</a>
+      <nav class="nav" aria-label="Основное меню">
+        <a href="site-map.html">Маршрут</a>
+        <a href="index.html#concept">Концепция</a>
+        <a href="index.html#videos">Ролики</a>
+        <a href="carousel-production.html">Карусели</a>
+        <a href="visual-prompts.html">Промпты</a>
+        <a href="production-handoff.html">Handoff</a>
+      </nav>
+      <span class="chip">21 PNG</span>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <div>
+        <span class="kicker">Filled exports</span>
+        <h1>Заполненные карусели.</h1>
+        <p class="lead">Здесь лежит практический результат: три серии по семь PNG. Можно смотреть, скачивать, отправлять на ревью или использовать как основу для публикации.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#carousel-01">Карусель 01</a>
+          <a class="button" href="#carousel-02">Карусель 02</a>
+          <a class="button" href="#carousel-03">Карусель 03</a>
+        </div>
+      </div>
+      <aside class="panel">
+        <h2>Export status</h2>
+        <div class="panel-row"><strong>Размер</strong><span>1080x1350</span></div>
+        <div class="panel-row"><strong>Формат</strong><span>PNG</span></div>
+        <div class="panel-row"><strong>Всего</strong><span>21 слайд</span></div>
+        <div class="panel-row"><strong>Назначение</strong><span>Instagram / LinkedIn PDF</span></div>
+      </aside>
+    </section>
+
+    <section id="carousel-01">
+      <div class="section-head">
+        <h2>01. Как проходит занятие.</h2>
+        <p>Принятый baseline: первая карусель для знакомства с форматом АФГ.</p>
+      </div>
+      <div class="slide-grid" data-carousel="01"></div>
+      <div class="section-actions">
+        <a class="button" href="carousel-example.html">Открыть пример</a>
+        <a class="button" href="exports/afg-carousel-01/">Папка PNG</a>
+      </div>
+    </section>
+
+    <section id="carousel-02">
+      <div class="section-head">
+        <h2>02. Что дает занятие.</h2>
+        <p>Серия про состояние, ресурс, дыхание, ось и субъективную телесную собранность.</p>
+      </div>
+      <div class="slide-grid" data-carousel="02"></div>
+      <div class="section-actions">
+        <a class="button" href="carousel-production.html?carousel=2">Открыть renderer</a>
+        <a class="button" href="exports/afg-carousel-02/">Папка PNG</a>
+      </div>
+    </section>
+
+    <section id="carousel-03">
+      <div class="section-head">
+        <h2>03. Доказательства.</h2>
+        <p>Proof layer: осторожный контекст, источники, карта и личный опыт без медицинских обещаний.</p>
+      </div>
+      <div class="slide-grid" data-carousel="03"></div>
+      <div class="section-actions">
+        <a class="button" href="carousel-production.html?carousel=3">Открыть renderer</a>
+        <a class="button" href="exports/afg-carousel-03/">Папка PNG</a>
+      </div>
+    </section>
+
+    <nav class="page-nav" aria-label="Вперед и назад">
+      <a href="visual-prompts.html"><strong>Назад</strong>Промпты для визуалов</a>
+      <a href="production-handoff.html"><strong>Вперед</strong>Handoff и следующий sprint</a>
+    </nav>
+  </main>
+
+  <footer>
+    <div class="wrap">Галерея показывает текущие заполненные PNG. Для замены визуалов сначала обновляем renderer, потом переснимаем exports.</div>
+  </footer>
+
+  <script>
+    document.querySelectorAll("[data-carousel]").forEach((grid) => {
+      const id = grid.dataset.carousel;
+      for (let slide = 1; slide <= 7; slide += 1) {
+        const num = String(slide).padStart(2, "0");
+        const path = `exports/afg-carousel-${id}/afg-carousel-${id}-slide-${num}.png`;
+        const link = document.createElement("a");
+        link.className = "slide-card";
+        link.href = path;
+        link.innerHTML = `<img src="${path}" loading="lazy" decoding="async" alt="АФГ карусель ${id}, слайд ${num}"><span><strong>${id} / ${num}</strong><em>PNG</em></span>`;
+        grid.appendChild(link);
+      }
+    });
+  </script>
+</body>
+</html>

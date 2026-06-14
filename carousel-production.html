@@ -819,6 +819,33 @@
       margin-top: 2.8vw;
     }
 
+    .route-footer {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 44px;
+    }
+
+    .route-footer a {
+      border: 1px solid rgba(49, 95, 76, .18);
+      border-radius: 8px;
+      padding: 18px;
+      background: #fff;
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 750;
+    }
+
+    .route-footer strong {
+      display: block;
+      color: #315f4c;
+      font-size: 18px;
+    }
+
+    .export-mode .route-footer {
+      display: none;
+    }
+
     @media (max-width: 720px) {
       .page {
         padding-inline: 14px;
@@ -833,6 +860,10 @@
       .sheet:not(.single) .eyebrow {
         font-size: 12px;
       }
+
+      .route-footer {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
@@ -842,12 +873,22 @@
       <h1>Production экспорт АФГ</h1>
       <p>Три готовые карусели в формате 1080x1350. Для экспорта одного кадра используйте параметры <strong>?carousel=1&slide=1</strong>.</p>
       <nav aria-label="Карусели">
+        <a href="site-map.html">Маршрут</a>
+        <a href="index.html#concept">Концепция</a>
+        <a href="index.html#videos">Ролики</a>
         <a href="carousel-production.html?carousel=1">Карусель 1</a>
         <a href="carousel-production.html?carousel=2">Карусель 2</a>
         <a href="carousel-production.html?carousel=3">Карусель 3</a>
+        <a href="visual-prompts.html">Промпты</a>
+        <a href="exports-gallery.html">Заполнено</a>
+        <a href="production-handoff.html">Handoff</a>
       </nav>
     </section>
     <section id="sheet" class="sheet" aria-label="Production slides"></section>
+    <nav class="route-footer" aria-label="Вперед и назад">
+      <a href="index.html#carousels"><strong>Назад</strong>Карусели на главной</a>
+      <a href="visual-prompts.html"><strong>Вперед</strong>Промпты для визуалов</a>
+    </nav>
   </main>
 
   <script>

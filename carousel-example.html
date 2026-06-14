@@ -558,6 +558,28 @@
       color: var(--muted);
     }
 
+    .route-footer {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 40px;
+    }
+
+    .route-footer a {
+      border: 1px solid rgba(49, 95, 76, .18);
+      border-radius: var(--radius);
+      padding: 18px;
+      background: rgba(255, 255, 255, .72);
+      color: var(--muted);
+      font-weight: 750;
+    }
+
+    .route-footer strong {
+      display: block;
+      color: var(--accent);
+      font-size: 18px;
+    }
+
     @media (max-width: 1040px) {
       .hero-grid,
       .board,
@@ -624,6 +646,10 @@
       .slide-title {
         font-size: clamp(34px, 13vw, 50px);
       }
+
+      .route-footer {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
@@ -633,9 +659,12 @@
       <div class="wrap topbar-inner">
         <a class="brand" href="index.html">АФГ content system</a>
         <nav class="nav" aria-label="Разделы страницы">
+          <a href="site-map.html">Маршрут</a>
           <a href="index.html#carousels">Все карусели</a>
           <a href="#slides">Слайды</a>
           <a href="#export">Экспорт</a>
+          <a href="visual-prompts.html#carousel-01">Промпты</a>
+          <a href="exports-gallery.html#carousel-01">Заполнено</a>
           <a href="carousel-production.html?carousel=1">Production</a>
         </nav>
         <span class="chip">Готовый пример 01</span>
@@ -909,6 +938,14 @@
             <a class="button secondary" href="exports/afg-carousel-01/afg-carousel-01-slide-06.png">PNG slide 06</a>
             <a class="button secondary" href="exports/afg-carousel-01/afg-carousel-01-slide-07.png">PNG slide 07</a>
           </div>
+        </div>
+      </section>
+      <section>
+        <div class="wrap">
+          <nav class="route-footer" aria-label="Вперед и назад">
+            <a href="site-map.html"><strong>Назад</strong>Карта маршрута</a>
+            <a href="exports-gallery.html#carousel-01"><strong>Вперед</strong>Заполненная карусель 01</a>
+          </nav>
         </div>
       </section>
     </main>

@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>АФГ - промпты для визуалов</title>
+  <meta name="description" content="Промпты для генерации визуалов к трем каруселям АФГ.">
+  <style>
+    :root {
+      --bg: #f4f6f2;
+      --ink: #18221f;
+      --muted: #61716b;
+      --surface: #ffffff;
+      --line: rgba(24, 34, 31, .13);
+      --accent: #315f4c;
+      --accent-2: #a8563d;
+      color-scheme: light;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Aptos", "Segoe UI", system-ui, -apple-system, sans-serif;
+      letter-spacing: 0;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .wrap { width: min(1180px, calc(100% - 40px)); margin: 0 auto; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid var(--line);
+      background: rgba(244, 246, 242, .92);
+      backdrop-filter: blur(18px);
+    }
+
+    .topbar-inner {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 22px;
+      min-height: 70px;
+    }
+
+    .brand { font-size: 18px; font-weight: 900; color: var(--accent); }
+
+    .nav { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; }
+
+    .nav a,
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      border: 1px solid rgba(49, 95, 76, .22);
+      border-radius: 8px;
+      padding: 10px 13px;
+      background: #fff;
+      color: var(--accent);
+      font-size: 14px;
+      font-weight: 850;
+      white-space: nowrap;
+    }
+
+    .button.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+    .chip {
+      border-radius: 999px;
+      padding: 9px 13px;
+      background: #e3eae1;
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    main { padding: 68px 0 88px; }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(320px, .64fr);
+      gap: 40px;
+      align-items: end;
+      margin-bottom: 54px;
+    }
+
+    .kicker {
+      display: inline-flex;
+      border: 1px solid rgba(49, 95, 76, .24);
+      border-radius: 999px;
+      padding: 9px 12px;
+      background: #fff;
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    h1, h2, h3, p { margin: 0; }
+
+    h1 {
+      max-width: 860px;
+      margin-top: 22px;
+      font-size: clamp(54px, 9vw, 112px);
+      line-height: .9;
+      text-wrap: balance;
+    }
+
+    .lead {
+      max-width: 760px;
+      margin-top: 24px;
+      color: var(--muted);
+      font-size: clamp(20px, 2.2vw, 27px);
+      line-height: 1.24;
+      font-weight: 650;
+    }
+
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 22px;
+      background: #fff;
+    }
+
+    .panel h2 { font-size: 26px; }
+
+    .panel p { margin-top: 12px; color: var(--muted); line-height: 1.42; font-weight: 650; }
+
+    section { margin-top: 56px; }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, .8fr) minmax(280px, .55fr);
+      gap: 26px;
+      align-items: end;
+      margin-bottom: 20px;
+    }
+
+    .section-head h2 {
+      font-size: clamp(36px, 5vw, 64px);
+      line-height: .95;
+      text-wrap: balance;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.45;
+      font-weight: 650;
+    }
+
+    .prompt-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .prompt-card {
+      display: grid;
+      gap: 14px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px;
+      background: #fff;
+      min-height: 100%;
+    }
+
+    .prompt-card h3 {
+      color: var(--accent-2);
+      font-size: 15px;
+      letter-spacing: .03em;
+      text-transform: uppercase;
+    }
+
+    .prompt-card p {
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.42;
+      font-weight: 650;
+    }
+
+    .copy-row { display: flex; justify-content: space-between; gap: 10px; align-items: center; }
+
+    .copy-button {
+      border: 1px solid rgba(49, 95, 76, .24);
+      border-radius: 8px;
+      padding: 9px 11px;
+      background: #f8faf6;
+      color: var(--accent);
+      font: inherit;
+      font-size: 13px;
+      font-weight: 850;
+      cursor: pointer;
+    }
+
+    .page-nav {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 64px;
+    }
+
+    .page-nav a {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px;
+      background: #fff;
+      color: var(--muted);
+      font-weight: 750;
+    }
+
+    .page-nav strong { display: block; color: var(--accent); font-size: 18px; }
+
+    footer { border-top: 1px solid var(--line); padding: 28px 0; color: var(--muted); font-weight: 650; }
+
+    @media (max-width: 860px) {
+      .topbar-inner, .hero, .section-head, .prompt-grid, .page-nav { grid-template-columns: 1fr; }
+      .topbar-inner { padding: 16px 0; }
+      .nav { justify-content: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a class="brand" href="site-map.html">АФГ system</a>
+      <nav class="nav" aria-label="Основное меню">
+        <a href="site-map.html">Маршрут</a>
+        <a href="index.html#concept">Концепция</a>
+        <a href="index.html#videos">Ролики</a>
+        <a href="carousel-production.html">Карусели</a>
+        <a href="exports-gallery.html">Заполнено</a>
+        <a href="production-handoff.html">Handoff</a>
+      </nav>
+      <span class="chip">21 prompt</span>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <div>
+        <span class="kicker">Visual prompt bank</span>
+        <h1>Промпты для уникальных визуалов.</h1>
+        <p class="lead">Каждый слайд получил отдельный visual slot. Копируй prompt, генерируй картинку в 4:5 и потом заменяй техническую графику в production renderer.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#carousel-01">Карусель 01</a>
+          <a class="button" href="#carousel-02">Карусель 02</a>
+          <a class="button" href="#carousel-03">Карусель 03</a>
+        </div>
+      </div>
+      <aside class="panel">
+        <h2>Правило</h2>
+        <p>Промпты держат общий AFG-язык: премиальный wellness, спокойная телесность, proof без медицинских обещаний.</p>
+        <p>Для доказательной серии не использовать логотипы, официальные endorsement-сигналы и визуалы “лечение доказано”.</p>
+      </aside>
+    </section>
+
+    <section id="carousel-01">
+      <div class="section-head">
+        <h2>Карусель 01. Как проходит занятие.</h2>
+        <p>Вход в студию, настройка тела, мягкая осевая нагрузка и приглашение на опыт.</p>
+      </div>
+      <div class="prompt-grid">
+        <article class="prompt-card"><div class="copy-row"><h3>01 / вход</h3><button class="copy-button">Скопировать</button></div><p>Premium editorial wellness photograph, vertical 4:5, quiet private studio entrance, soft morning light, calm person entering a minimal movement room, warm sage and ivory palette, cinematic but natural, high-end magazine composition, negative space for Russian headline, no logos, no medical clinic feeling</p></article>
+        <article class="prompt-card"><div class="copy-row"><h3>02 / настройка</h3><button class="copy-button">Скопировать</button></div><p>Premium editorial wellness close-up, vertical 4:5, feet grounded on warm studio floor, subtle breath posture, soft shadows, tactile fabric, calm nervous system mood, warm natural light, minimal composition, negative space for text, no gym intensity, no stock-photo smile</p></article>
+        <article class="prompt-card"><div class="copy-row"><h3>03 / фундамент</h3><button class="copy-button">Скопировать</button></div><p>Premium conceptual photograph, vertical 4:5, skeleton as architecture metaphor, elegant bone-like sculptural object beside clean studio wall, soft directional light, refined wellness atelier mood, sage ivory stone palette, negative space for text, not clinical, not scary</p></article>
+        <article class="prompt-card"><div class="copy-row"><h3>04 / нагрузка</h3><button class="copy-button">Скопировать</button></div><p>Premium macro editorial photograph, vertical 4:5, close detail of hand or foot aligned with a soft vertical axis of light, controlled axial load implied gently, tactile skin and fabric, quiet studio, high-end wellness campaign, negative space for text, no medical device emphasis</p></article>
+        <article class="prompt-card"><div class="copy-row"><h3>05 / ритм</h3><button class="copy-button">Скопировать</button></div><p>Premium editorial still life, vertical 4:5, minimal timer and folded towel on studio bench, short precise session rhythm, warm light, calm premium wellness mood, muted green and ivory palette, clean negative space for headline, no gym props overload</p></article>
+        <article class="prompt-card"><div class="copy-row"><h3>06 / после</h3><button class="copy-button">Скопировать</button></div><p>Premium wellness portrait, vertical 4:5, person standing calmly after session, relaxed posture, grounded feet, soft backlight, quiet confidence, high-end editorial studio photography, natural skin, negative space for text, no exaggerated transformation</p></article>
+        <article class="prompt-card"><div class="copy-row"><h3>07 / приглашение</h3><button class="copy-button">Скопировать</button></div><p>Premium editorial invitation image, vertical 4:5, softly lit studio doorway with warm light spilling out, calm welcoming atmosphere, minimal interior, tactile walls and natural materials, high-end wellness brand mood, negative space for CTA text, no signage, no medical clinic</p></article>
+      </div>
+    </section>
+
+    <section id="carousel-02">
+      <div class="section-head">
+        <h2>Карусель 02. Что дает занятие.</h2>
+        <p>Состояние, ресурс, ось, дыхание и регулярность без обещаний лечения.</p>
+      </div>
+      <div class="prompt-grid">
+        <article class="prompt-card"><div class="copy-row"><h3>01 / система</h3><button class="copy-button">Скопировать</button></div><p>Premium abstract wellness photograph, vertical 4:5, body as a calm system, soft translucent body contour implied by light, gentle vertical axis, breathing rhythm, sage green and ivory palette, airy premium composition, large negative space for Russian text, no literal medical promise</p></article>
+        <article class="prompt-card"><div class="copy-row"><h3>02 / движение</h3><button class="copy-button">Скопировать</button></div><p>Premium movement editorial image, vertical 4:5, precise lines of movement around a calm person, subtle light trails, posture becoming organized, warm studio, tactile floor, minimal high-end wellness look, negative space for headline, no fitness intensity</p></article>
+        <article class="prompt-card"><div class="copy-row"><h3>03 / ось</h3><button class="copy-button">Скопировать</button></div><p>Premium conceptual wellness image, vertical 4:5, vertical axis through space, feet pelvis spine shoulders head implied through elegant light markers, calm studio environment, refined sage palette, quiet and precise, negative space for text, no anatomy textbook</p></article>
+        <article class="prompt-card"><div class="copy-row"><h3>04 / дыхание</h3><button class="copy-button">Скопировать</button></div><p>Premium breath and rhythm photograph, vertical 4:5, soft fabric moving with breath, person seated or standing calmly, light falling in even pulses, nervous system settling mood, premium editorial wellness aesthetic, negative space for text, no meditation cliche</p></article>
+        <article class="prompt-card"><div class="copy-row"><h3>05 / ресурс</h3><button class="copy-button">Скопировать</button></div><p>Premium tactile wellness still life, vertical 4:5, soft natural fabric, warm light, pause and resource without pressure, quiet movement studio details, muted green and ivory, elegant composition with depth, large negative space for text, no medical equipment</p></article>
+        <article class="prompt-card"><div class="copy-row"><h3>06 / регулярность</h3><button class="copy-button">Скопировать</button></div><p>Premium sequence image, vertical 4:5, series of calm steps or subtle floor marks showing regularity over time, quiet studio corridor, rhythmic light, high-end wellness editorial style, negative space for headline, no calendar cliche, no exaggerated before-after</p></article>
+        <article class="prompt-card"><div class="copy-row"><h3>07 / до и после</h3><button class="copy-button">Скопировать</button></div><p>Premium subjective before-after concept, vertical 4:5, same person suggested through two light states, from tense dimness to grounded calm, tasteful split through light only, no medical transformation, warm studio, negative space for CTA, refined wellness campaign</p></article>
+      </div>
+    </section>
+
+    <section id="carousel-03">
+      <div class="section-head">
+        <h2>Карусель 03. Доказательства.</h2>
+        <p>Proof atelier: источники, контекст, карты, космос и личные истории без implied endorsement.</p>
+      </div>
+      <div class="prompt-grid">
+        <article class="prompt-card"><div class="copy-row"><h3>01 / источники</h3><button class="copy-button">Скопировать</button></div><p>Premium proof atelier still life, vertical 4:5, strict cover image with papers, source notes, thin lines, bone-like material sample, muted ivory, deep green and warm terracotta accents, editorial research table, negative space for headline, no hospital, no official endorsement</p></article>
+        <article class="prompt-card"><div class="copy-row"><h3>02 / кость</h3><button class="copy-button">Скопировать</button></div><p>Premium macro conceptual image, vertical 4:5, bone as living structure, elegant porous mineral texture lit like sculpture, warm scientific atelier mood, paper and shadow nearby, refined and non-clinical, negative space for text, no disease imagery</p></article>
+        <article class="prompt-card"><div class="copy-row"><h3>03 / контекст</h3><button class="copy-button">Скопировать</button></div><p>Premium research desk composition, vertical 4:5, abstract osteogenic load context, papers with unreadable charts, studio notes, tactile mechanical detail without brand logos, ivory paper, deep green shadows, terracotta marker, negative space for Russian headline, no implied partnership</p></article>
+        <article class="prompt-card"><div class="copy-row"><h3>04 / карта</h3><button class="copy-button">Скопировать</button></div><p>Premium cartographic proof image, vertical 4:5, world map abstraction on paper with thin connecting lines and small pins, wellness studio expansion context, deep green and ivory palette, high-end editorial desk, negative space for text, no country flags, no endorsement claim</p></article>
+        <article class="prompt-card"><div class="copy-row"><h3>05 / longevity</h3><button class="copy-button">Скопировать</button></div><p>Premium active longevity editorial still life, vertical 4:5, refined wellness research table with age-positive movement cues, folded fabric, paper notes, soft light, calm sophistication, no medical claims, no elderly stereotype, negative space for headline</p></article>
+        <article class="prompt-card"><div class="copy-row"><h3>06 / космос</h3><button class="copy-button">Скопировать</button></div><p>Premium science context image, vertical 4:5, cosmic darkness blended with bone-density research diagram on paper, subtle orbit lines, deep green black and ivory, tactile proof atelier, cinematic but restrained, negative space for text, no NASA logo, no claim that method is proven</p></article>
+        <article class="prompt-card"><div class="copy-row"><h3>07 / история</h3><button class="copy-button">Скопировать</button></div><p>Premium personal story portrait, vertical 4:5, calm human portrait in soft studio light, authentic grounded expression, paper note or testimonial card nearby, warm and respectful, negative space for CTA, no guarantee of result, no stock-photo smile</p></article>
+      </div>
+    </section>
+
+    <nav class="page-nav" aria-label="Вперед и назад">
+      <a href="carousel-production.html"><strong>Назад</strong>Карусели и renderer</a>
+      <a href="exports-gallery.html"><strong>Вперед</strong>Заполненные PNG</a>
+    </nav>
+  </main>
+
+  <footer>
+    <div class="wrap">Все промпты также лежат в Markdown-файле `visual-prompts.md`.</div>
+  </footer>
+
+  <script>
+    document.querySelectorAll(".copy-button").forEach((button) => {
+      button.addEventListener("click", async () => {
+        const text = button.closest(".prompt-card").querySelector("p").textContent.trim();
+        try {
+          await navigator.clipboard.writeText(text);
+          button.textContent = "Скопировано";
+          setTimeout(() => { button.textContent = "Скопировать"; }, 1400);
+        } catch {
+          button.textContent = "Выдели текст";
+        }
+      });
+    });
+  </script>
+</body>
+</html>

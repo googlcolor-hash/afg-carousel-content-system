@@ -294,6 +294,29 @@
       line-height: 1.42;
     }
 
+    .route-footer {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 64px;
+    }
+
+    .route-footer a {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px;
+      background: #fff;
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 750;
+    }
+
+    .route-footer strong {
+      display: block;
+      color: var(--accent);
+      font-size: 18px;
+    }
+
     footer {
       border-top: 1px solid var(--line);
       padding: 28px 0;
@@ -310,6 +333,10 @@
 
       .wide {
         grid-column: auto;
+      }
+
+      .route-footer {
+        grid-template-columns: 1fr;
       }
 
       .topbar-inner {
@@ -329,8 +356,12 @@
     <div class="wrap topbar-inner">
       <a class="brand" href="index.html">АФГ content system</a>
       <nav class="nav" aria-label="Разделы">
+        <a href="site-map.html">Маршрут</a>
         <a href="index.html">Главная</a>
+        <a href="index.html#videos">Ролики</a>
         <a href="carousel-production.html">Production</a>
+        <a href="visual-prompts.html">Промпты</a>
+        <a href="exports-gallery.html">Заполнено</a>
         <a href="carousel-example.html">Пример 01</a>
         <a href="#exports">Экспорт</a>
         <a href="#visuals">Визуалы</a>
@@ -476,6 +507,10 @@
 http://127.0.0.1:4173/carousel-production.html
 http://127.0.0.1:4173/carousel-production.html?carousel=2&slide=1</pre>
     </section>
+    <nav class="route-footer" aria-label="Вперед и назад">
+      <a href="exports-gallery.html"><strong>Назад</strong>Заполненные PNG</a>
+      <a href="site-map.html"><strong>Вперед</strong>Вернуться к карте маршрута</a>
+    </nav>
   </main>
 
   <footer>

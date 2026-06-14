@@ -869,6 +869,84 @@
       color: var(--ink);
     }
 
+    .anchor-alias {
+      position: relative;
+      top: -88px;
+      display: block;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+    }
+
+    .step-nav {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .step-nav a {
+      border: 1px solid rgba(49, 95, 76, .18);
+      border-radius: var(--radius);
+      padding: 16px;
+      background: rgba(255, 255, 255, .68);
+      color: var(--muted);
+      font-weight: 750;
+    }
+
+    .step-nav strong {
+      display: block;
+      color: var(--accent);
+      font-size: 16px;
+    }
+
+    .resource-grid,
+    .export-grid-main {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .resource-card,
+    .export-preview {
+      border: 1px solid rgba(49, 95, 76, .16);
+      border-radius: var(--radius);
+      padding: 22px;
+      background: rgba(255, 255, 255, .74);
+      box-shadow: var(--shadow);
+    }
+
+    .resource-card h3,
+    .export-preview h3 {
+      margin: 0;
+      font-size: 25px;
+      line-height: 1.05;
+    }
+
+    .resource-card p,
+    .export-preview p {
+      margin: 12px 0 0;
+      color: var(--muted);
+      font-weight: 650;
+    }
+
+    .resource-actions,
+    .export-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .export-preview img {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      border-radius: var(--radius);
+      margin-bottom: 16px;
+      background: var(--surface-2);
+    }
+
     @media (prefers-reduced-motion: reduce) {
       html {
         scroll-behavior: auto;
@@ -1000,6 +1078,12 @@
         grid-template-columns: 1fr;
       }
 
+      .step-nav,
+      .resource-grid,
+      .export-grid-main {
+        grid-template-columns: 1fr;
+      }
+
       .photo-stack {
         position: relative;
         inset: auto;
@@ -1028,13 +1112,13 @@
       <div class="wrap topbar-inner">
         <a class="brand" href="#top">АФГ content system</a>
         <nav class="nav" aria-label="Разделы страницы">
-          <a href="#brief">Бриф</a>
+          <a href="site-map.html">Маршрут</a>
+          <a href="#concept">Концепция</a>
+          <a href="#videos">Ролики</a>
           <a href="#carousels">Карусели</a>
-          <a href="carousel-example.html">Пример</a>
+          <a href="#prompts">Промпты</a>
+          <a href="#exports">Заполнено</a>
           <a href="production-handoff.html">Handoff</a>
-          <a href="#film-map">Film map</a>
-          <a href="#scripts">Рилсы</a>
-          <a href="#claims">Claims</a>
         </nav>
         <span class="chip">3 карусели + 3 сценария</span>
       </div>
@@ -1075,7 +1159,8 @@
         </div>
       </section>
 
-      <section id="brief">
+      <section id="concept">
+        <span id="brief" class="anchor-alias"></span>
         <div class="wrap">
           <div class="section-head">
             <h2>Сначала мягкое доверие, потом доказательства.</h2>
@@ -1098,6 +1183,10 @@
               <p><strong>Важно:</strong> публичные тексты держим в зоне wellness, movement, relaxation, body awareness. Биомаркеры, лечение и институциональные claims выносим в верификацию.</p>
             </article>
           </div>
+          <nav class="step-nav" aria-label="Навигация по маршруту">
+            <a href="#top"><strong>Назад</strong>Общий вход</a>
+            <a href="#videos"><strong>Вперед</strong>Ролики</a>
+          </nav>
         </div>
       </section>
 
@@ -1214,6 +1303,10 @@
               <div class="slide"><span class="slide-number">7</span><h4>И есть человеческий опыт</h4><p>Отзывы лучше подавать как личные истории, а не как гарантию результата.</p><span class="visual-note">CTA: запросить источники</span></div>
             </div>
           </article>
+          <nav class="step-nav" aria-label="Навигация по маршруту">
+            <a href="#videos"><strong>Назад</strong>Ролики</a>
+            <a href="#prompts"><strong>Вперед</strong>Промпты</a>
+          </nav>
         </div>
       </section>
 
@@ -1344,7 +1437,8 @@
         </div>
       </section>
 
-      <section id="scripts">
+      <section id="videos">
+        <span id="scripts" class="anchor-alias"></span>
         <div class="wrap">
           <div class="section-head">
             <h2>Три сценария роликов.</h2>
@@ -1405,6 +1499,91 @@
               </div>
             </article>
           </div>
+          <nav class="step-nav" aria-label="Навигация по маршруту">
+            <a href="#concept"><strong>Назад</strong>Концепция</a>
+            <a href="#carousels"><strong>Вперед</strong>Карусели</a>
+          </nav>
+        </div>
+      </section>
+
+      <section id="prompts">
+        <div class="wrap">
+          <div class="section-head">
+            <h2>Промпты для визуалов.</h2>
+            <p>Отдельный банк prompt-slots для генерации уникальных картинок под каждый слайд. Это мост между смыслом каруселей и финальным visual production.</p>
+          </div>
+          <div class="resource-grid">
+            <article class="resource-card">
+              <h3>01. Как проходит занятие</h3>
+              <p>Тихая студия, настройка, скелет как фундамент, мягкая нагрузка и приглашение.</p>
+              <div class="resource-actions">
+                <a class="button" href="visual-prompts.html#carousel-01">HTML-промпты</a>
+                <a class="button secondary" href="visual-prompts.md">Markdown</a>
+              </div>
+            </article>
+            <article class="resource-card">
+              <h3>02. Что дает занятие</h3>
+              <p>Состояние, ресурс, дыхание, ось, регулярность и субъективное до/после.</p>
+              <div class="resource-actions">
+                <a class="button" href="visual-prompts.html#carousel-02">HTML-промпты</a>
+                <a class="button secondary" href="carousel-production.html?carousel=2">Renderer 02</a>
+              </div>
+            </article>
+            <article class="resource-card">
+              <h3>03. Доказательства</h3>
+              <p>Proof atelier, источники, карта, bone material, космос и личная история без medical claims.</p>
+              <div class="resource-actions">
+                <a class="button" href="visual-prompts.html#carousel-03">HTML-промпты</a>
+                <a class="button secondary" href="carousel-production.html?carousel=3">Renderer 03</a>
+              </div>
+            </article>
+          </div>
+          <nav class="step-nav" aria-label="Навигация по маршруту">
+            <a href="#carousels"><strong>Назад</strong>Карусели</a>
+            <a href="#exports"><strong>Вперед</strong>Заполненные PNG</a>
+          </nav>
+        </div>
+      </section>
+
+      <section id="exports">
+        <div class="wrap">
+          <div class="section-head">
+            <h2>Заполненные карусели.</h2>
+            <p>Здесь быстрый обзор текущих готовых PNG. Полная витрина лежит на отдельной странице галереи.</p>
+          </div>
+          <div class="export-grid-main">
+            <article class="export-preview">
+              <img src="exports/afg-carousel-01/afg-carousel-01-slide-01.png" width="1080" height="1350" loading="lazy" decoding="async" alt="Карусель 01, слайд 01">
+              <h3>Карусель 01</h3>
+              <p>Как проходит занятие. Принятый baseline для первого касания.</p>
+              <div class="export-actions">
+                <a class="button" href="exports-gallery.html#carousel-01">Галерея</a>
+                <a class="button secondary" href="exports/afg-carousel-01/">PNG-папка</a>
+              </div>
+            </article>
+            <article class="export-preview">
+              <img src="exports/afg-carousel-02/afg-carousel-02-slide-01.png" width="1080" height="1350" loading="lazy" decoding="async" alt="Карусель 02, слайд 01">
+              <h3>Карусель 02</h3>
+              <p>Что дает занятие. Body rhythm, ресурс и мягкая вертикаль.</p>
+              <div class="export-actions">
+                <a class="button" href="exports-gallery.html#carousel-02">Галерея</a>
+                <a class="button secondary" href="exports/afg-carousel-02/">PNG-папка</a>
+              </div>
+            </article>
+            <article class="export-preview">
+              <img src="exports/afg-carousel-03/afg-carousel-03-slide-01.png" width="1080" height="1350" loading="lazy" decoding="async" alt="Карусель 03, слайд 01">
+              <h3>Карусель 03</h3>
+              <p>Доказательства. Proof atelier, источники и осторожная подача.</p>
+              <div class="export-actions">
+                <a class="button" href="exports-gallery.html#carousel-03">Галерея</a>
+                <a class="button secondary" href="exports/afg-carousel-03/">PNG-папка</a>
+              </div>
+            </article>
+          </div>
+          <nav class="step-nav" aria-label="Навигация по маршруту">
+            <a href="#prompts"><strong>Назад</strong>Промпты</a>
+            <a href="production-handoff.html"><strong>Вперед</strong>Handoff</a>
+          </nav>
         </div>
       </section>
 
