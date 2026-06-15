@@ -14,6 +14,7 @@ Static GitHub Pages package for the AFG content system.
 - Visual prompts: `visual-prompts.md`
 - ComfyUI prompts page: `comfy-prompts.html`
 - ComfyUI prompts: `comfy-prompts.md`
+- ImageGen visual recipe: `visual-generation-recipe.md`
 - Filled exports gallery: `exports-gallery.html`
 - Legacy carousel 01 renderer: `carousel-export.html`
 - Production renderer for all 3 carousels: `carousel-production.html`
