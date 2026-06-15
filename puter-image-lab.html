@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Puter Image Lab</title>
+  <script src="https://js.puter.com/v2/"></script>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #23242a;
+      --muted: #6c6670;
+      --line: #ead4dc;
+      --paper: #fffafc;
+      --panel: #ffffff;
+      --rose: #d44c78;
+      --rose-soft: #f8d7e3;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--ink);
+      background:
+        linear-gradient(var(--line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--line) 1px, transparent 1px),
+        var(--paper);
+      background-size: 40px 40px;
+    }
+    main {
+      display: grid;
+      grid-template-columns: 420px minmax(0, 1fr);
+      gap: 24px;
+      min-height: 100vh;
+      padding: 28px;
+    }
+    aside, section {
+      background: rgba(255,255,255,.88);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      box-shadow: 0 18px 50px rgba(60, 30, 45, .08);
+    }
+    aside { padding: 22px; }
+    section {
+      display: grid;
+      place-items: center;
+      padding: 22px;
+      overflow: hidden;
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 25px;
+      letter-spacing: .2px;
+    }
+    p {
+      margin: 0 0 18px;
+      color: var(--muted);
+      line-height: 1.45;
+      font-size: 14px;
+    }
+    label {
+      display: block;
+      margin: 15px 0 7px;
+      font-weight: 700;
+      font-size: 13px;
+    }
+    textarea, select, input {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: white;
+      color: var(--ink);
+      font: inherit;
+    }
+    textarea {
+      min-height: 220px;
+      resize: vertical;
+      padding: 12px;
+      line-height: 1.45;
+    }
+    select, input { padding: 10px 11px; }
+    .row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    button {
+      width: 100%;
+      margin-top: 18px;
+      border: 0;
+      border-radius: 8px;
+      padding: 13px 16px;
+      background: var(--rose);
+      color: white;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .button-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .button-grid button { margin-top: 18px; }
+    .secondary {
+      background: white;
+      color: var(--rose);
+      border: 1px solid var(--rose-soft);
+    }
+    button:disabled {
+      opacity: .55;
+      cursor: wait;
+    }
+    .notice {
+      display: none;
+      margin: 14px 0 0;
+      padding: 11px 12px;
+      border: 1px solid #f1bdcf;
+      border-radius: 8px;
+      background: #fff2f7;
+      color: #7f2646;
+      font-size: 13px;
+      line-height: 1.4;
+    }
+    .notice a {
+      color: inherit;
+      font-weight: 700;
+    }
+    .status {
+      min-height: 22px;
+      margin-top: 13px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    #result {
+      max-width: min(100%, 760px);
+      max-height: calc(100vh - 88px);
+      object-fit: contain;
+      border-radius: 8px;
+      background: var(--rose-soft);
+    }
+    .empty {
+      max-width: 520px;
+      color: var(--muted);
+      text-align: center;
+      line-height: 1.5;
+    }
+    @media (max-width: 900px) {
+      main { grid-template-columns: 1fr; padding: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <aside>
+      <h1>Puter Image Lab</h1>
+      <p>Быстрый бесплатный браузерный тест промптов. Лучший слой: генерируем чистую картинку без текста, а подписи накладываем отдельно.</p>
+      <div class="notice" id="fileNotice">
+        Puter-логин может не работать из <code>file://</code>. Открой эту же страницу через локальный сервер:
+        <a href="http://127.0.0.1:4173/puter-image-lab.html">http://127.0.0.1:4173/puter-image-lab.html</a>
+      </div>
+
+      <label for="prompt">Prompt</label>
+      <textarea id="prompt">vertical 9:16 technical fashion blueprint poster, white background with pale pink grid, elegant product design diagram, abstract tailoring mannequin lower torso, side view and 3/4 rear view, translucent soft foam pads, compression mesh, graphite contour lines, refined atelier drawing, museum quality, no text, no labels, non erotic, no real person, no skin texture</textarea>
+
+      <label for="model">Model</label>
+      <select id="model">
+        <option value="gpt-image-1-mini" data-provider="openai-image-generation">GPT Image Mini</option>
+        <option value="gpt-image-1.5" data-provider="openai-image-generation">GPT Image 1.5</option>
+        <option value="gpt-image-2" data-provider="openai-image-generation">GPT Image 2</option>
+        <option value="dall-e-3" data-provider="openai-image-generation">DALL-E 3</option>
+        <option value="grok-2-image" data-provider="xai">Grok Image</option>
+        <option value="black-forest-labs/flux-schnell" data-provider="replicate-image-generation">FLUX Schnell</option>
+      </select>
+
+      <div class="row">
+        <div>
+          <label for="width">Width</label>
+          <input id="width" type="number" min="512" max="1536" step="64" value="768">
+        </div>
+        <div>
+          <label for="height">Height</label>
+          <input id="height" type="number" min="512" max="1536" step="64" value="1344">
+        </div>
+      </div>
+
+      <div class="button-grid">
+        <button id="signin" class="secondary">Sign in</button>
+        <button id="generate">Generate</button>
+      </div>
+      <div class="status" id="status">Готово к тесту.</div>
+    </aside>
+
+    <section>
+      <div class="empty" id="empty">После генерации изображение появится здесь. Если Puter попросит вход или доступ, это нормально для их user-pays модели.</div>
+      <img id="result" alt="" hidden>
+    </section>
+  </main>
+
+  <script>
+    const $ = (id) => document.getElementById(id);
+    const status = $("status");
+    const result = $("result");
+    const empty = $("empty");
+    const button = $("generate");
+    const signInButton = $("signin");
+    const fileNotice = $("fileNotice");
+
+    const setBusy = (busy) => {
+      button.disabled = busy;
+      signInButton.disabled = busy;
+    };
+
+    const getOptions = () => {
+      const selected = $("model").selectedOptions[0];
+      const provider = selected.dataset.provider;
+      const model = selected.value;
+      const width = Number($("width").value);
+      const height = Number($("height").value);
+      const options = { provider, model };
+
+      if (provider === "replicate-image-generation" || provider === "openai-image-generation" || provider === "gemini") {
+        options.ratio = { w: width, h: height };
+      } else {
+        options.width = width;
+        options.height = height;
+      }
+
+      return options;
+    };
+
+    const refreshAuthState = async () => {
+      if (location.protocol === "file:") {
+        fileNotice.style.display = "block";
+        status.textContent = "Открой через http://127.0.0.1:4173/puter-image-lab.html, иначе popup логина может не вернуться на страницу.";
+        return;
+      }
+
+      try {
+        if (await puter.auth.isSignedIn()) {
+          const user = await puter.auth.getUser();
+          status.textContent = `Вход выполнен: ${user?.username || user?.email || "Puter"}.`;
+        }
+      } catch (error) {
+        console.warn(error);
+      }
+    };
+
+    signInButton.addEventListener("click", async () => {
+      setBusy(true);
+      status.textContent = "Открываю Puter login...";
+      try {
+        await puter.auth.signIn();
+        await refreshAuthState();
+      } catch (error) {
+        console.error(error);
+        status.textContent = "Ошибка входа: " + (error?.message || error);
+      } finally {
+        setBusy(false);
+      }
+    });
+
+    button.addEventListener("click", async () => {
+      setBusy(true);
+      status.textContent = "Генерирую...";
+      result.hidden = true;
+      empty.hidden = false;
+      try {
+        if (location.protocol === "file:") {
+          throw new Error("Страница открыта как file://. Для Puter login открой ее через локальный HTTP-сервер.");
+        }
+        const image = await puter.ai.txt2img($("prompt").value, getOptions());
+        const src = image.src || image.url || image.getAttribute?.("src");
+        if (!src) throw new Error("Puter вернул изображение без src.");
+        result.src = src;
+        result.hidden = false;
+        empty.hidden = true;
+        status.textContent = "Готово.";
+      } catch (error) {
+        console.error(error);
+        status.textContent = "Ошибка: " + (error?.message || error);
+      } finally {
+        setBusy(false);
+      }
+    });
+
+    refreshAuthState();
+  </script>
+</body>
+</html>
