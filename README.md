@@ -12,6 +12,8 @@ Static GitHub Pages package for the AFG content system.
 - Production handoff: `production-handoff.html`
 - Visual prompts page: `visual-prompts.html`
 - Visual prompts: `visual-prompts.md`
+- ComfyUI prompts page: `comfy-prompts.html`
+- ComfyUI prompts: `comfy-prompts.md`
 - Filled exports gallery: `exports-gallery.html`
 - Legacy carousel 01 renderer: `carousel-export.html`
 - Production renderer for all 3 carousels: `carousel-production.html`
@@ -29,8 +31,9 @@ Recommended reading order:
 3. `index.html#videos` - short video scripts.
 4. `index.html#carousels` - carousel outlines.
 5. `visual-prompts.html` - prompts for visual generation.
-6. `exports-gallery.html` - filled PNG carousel gallery.
-7. `production-handoff.html` - status, QA notes, and next production steps.
+6. `comfy-prompts.html` - ComfyUI-ready production prompts and negative prompt.
+7. `exports-gallery.html` - filled PNG carousel gallery.
+8. `production-handoff.html` - status, QA notes, and next production steps.
 
 ## Local Preview
 
@@ -47,6 +50,7 @@ http://127.0.0.1:4173/carousel-example.html
 http://127.0.0.1:4173/carousel-production.html
 http://127.0.0.1:4173/production-handoff.html
 http://127.0.0.1:4173/visual-prompts.html
+http://127.0.0.1:4173/comfy-prompts.html
 http://127.0.0.1:4173/exports-gallery.html
 ```
 
