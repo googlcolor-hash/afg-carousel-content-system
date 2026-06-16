@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>АФГ - заполненные карусели</title>
-  <meta name="description" content="Галерея готовых PNG-экспортов трех каруселей АФГ.">
+  <meta name="description" content="Галерея готовых JPG-экспортов трех каруселей АФГ.">
   <style>
     :root {
       --bg: #f4f6f2;
@@ -264,7 +264,7 @@
       <aside class="panel">
         <h2>Export status</h2>
         <div class="panel-row"><strong>Размер</strong><span>1080x1350</span></div>
-        <div class="panel-row"><strong>Формат</strong><span>PNG</span></div>
+        <div class="panel-row"><strong>Формат</strong><span>JPG</span></div>
         <div class="panel-row"><strong>Всего</strong><span>21 слайд</span></div>
         <div class="panel-row"><strong>Назначение</strong><span>Instagram / LinkedIn PDF</span></div>
       </aside>
@@ -278,7 +278,7 @@
       <div class="slide-grid" data-carousel="01"></div>
       <div class="section-actions">
         <a class="button" href="carousel-example.html">Открыть пример</a>
-        <a class="button" href="exports/afg-carousel-01/">Папка PNG</a>
+        <a class="button" href="exports/afg-carousel-01/">Папка JPG</a>
       </div>
     </section>
 
@@ -290,7 +290,7 @@
       <div class="slide-grid" data-carousel="02"></div>
       <div class="section-actions">
         <a class="button" href="carousel-production.html?carousel=2">Открыть renderer</a>
-        <a class="button" href="exports/afg-carousel-02/">Папка PNG</a>
+        <a class="button" href="exports/afg-carousel-02/">Папка JPG</a>
       </div>
     </section>
 
@@ -302,7 +302,7 @@
       <div class="slide-grid" data-carousel="03"></div>
       <div class="section-actions">
         <a class="button" href="carousel-production.html?carousel=3">Открыть renderer</a>
-        <a class="button" href="exports/afg-carousel-03/">Папка PNG</a>
+        <a class="button" href="exports/afg-carousel-03/">Папка JPG</a>
       </div>
     </section>
 
@@ -313,7 +313,7 @@
   </main>
 
   <footer>
-    <div class="wrap">Галерея показывает текущие заполненные PNG. Для замены визуалов сначала обновляем renderer, потом переснимаем exports.</div>
+    <div class="wrap">Галерея показывает текущие заполненные JPG. Для замены визуалов сначала обновляем renderer, потом переснимаем exports и сохраняем JPG.</div>
   </footer>
 
   <script>
@@ -321,14 +321,15 @@
       const id = grid.dataset.carousel;
       for (let slide = 1; slide <= 7; slide += 1) {
         const num = String(slide).padStart(2, "0");
-        const path = `exports/afg-carousel-${id}/afg-carousel-${id}-slide-${num}.png`;
+        const path = `exports/afg-carousel-${id}/afg-carousel-${id}-slide-${num}.jpg`;
         const link = document.createElement("a");
         link.className = "slide-card";
         link.href = path;
-        link.innerHTML = `<img src="${path}" loading="lazy" decoding="async" alt="АФГ карусель ${id}, слайд ${num}"><span><strong>${id} / ${num}</strong><em>PNG</em></span>`;
+        link.innerHTML = `<img src="${path}" loading="lazy" decoding="async" alt="АФГ карусель ${id}, слайд ${num}"><span><strong>${id} / ${num}</strong><em>JPG</em></span>`;
         grid.appendChild(link);
       }
     });
   </script>
 </body>
 </html>
+

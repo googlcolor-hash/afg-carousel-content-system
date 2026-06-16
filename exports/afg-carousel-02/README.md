@@ -2,15 +2,17 @@
 
 Topic: `Что дает занятие?`
 
-Files:
+Site-ready files:
 
-- `afg-carousel-02-slide-01.png`
-- `afg-carousel-02-slide-02.png`
-- `afg-carousel-02-slide-03.png`
-- `afg-carousel-02-slide-04.png`
-- `afg-carousel-02-slide-05.png`
-- `afg-carousel-02-slide-06.png`
-- `afg-carousel-02-slide-07.png`
+- `afg-carousel-02-slide-01.jpg`
+- `afg-carousel-02-slide-02.jpg`
+- `afg-carousel-02-slide-03.jpg`
+- `afg-carousel-02-slide-04.jpg`
+- `afg-carousel-02-slide-05.jpg`
+- `afg-carousel-02-slide-06.jpg`
+- `afg-carousel-02-slide-07.jpg`
+
+PNG masters are kept locally in the same folder.
 
 Renderer:
 

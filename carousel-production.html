@@ -153,6 +153,41 @@
         radial-gradient(circle at 82% 14%, rgba(255, 255, 255, .14), transparent 34%);
     }
 
+    .bg-image {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: saturate(.92) contrast(.96);
+    }
+
+    .slide.has-bg {
+      background: #17221f;
+    }
+
+    .slide.has-bg .art {
+      background: #17221f;
+    }
+
+    .slide.has-bg .art::before {
+      display: none;
+    }
+
+    .slide.has-bg .art::after {
+      z-index: 1;
+      background:
+        linear-gradient(90deg, rgba(14, 23, 20, .86) 0%, rgba(14, 23, 20, .58) 48%, rgba(14, 23, 20, .22) 100%),
+        linear-gradient(180deg, rgba(255, 255, 255, .08), transparent 38%, rgba(0, 0, 0, .18));
+    }
+
+    .slide.has-bg .axis,
+    .slide.has-bg .thread,
+    .slide.has-bg .mark,
+    .slide.has-bg .motif {
+      display: none;
+    }
+
     .mark {
       position: absolute;
       border: 2px solid rgba(255, 255, 255, .24);
@@ -897,6 +932,15 @@
         title: "Как проходит занятие?",
         series: "Карусель 1",
         tag: "Визуал: человек и телесная опора",
+        visuals: [
+          "assets/afg-hero-opora.jpg",
+          "assets/afg-resource-breath.jpg",
+          "assets/afg-proof-atelier.jpg",
+          "assets/afg-soft-load.jpg",
+          "assets/afg-precise-rhythm.jpg",
+          "assets/afg-after-integration.jpg",
+          "assets/afg-invitation-threshold.jpg"
+        ],
         slides: [
           ["Как проходит занятие АФГ?", "Не тренировка на износ, а короткая встреча тела с собственной опорой.", "Визуал: человек в тихой студии"],
           ["Сначала тело настраивается", "Важно замедлиться, почувствовать стопы, дыхание, ось и контакт с собой.", "Визуал: дыхание и восстановление"],
@@ -911,6 +955,15 @@
         title: "Что дает занятие?",
         series: "Карусель 2",
         tag: "Визуал: ресурс без давления",
+        visuals: [
+          "assets/afg-benefit-system.jpg",
+          "assets/afg-benefit-collected-motion.jpg",
+          "assets/afg-benefit-axis.jpg",
+          "assets/afg-benefit-breath-rhythm.jpg",
+          "assets/afg-benefit-resource-pause.jpg",
+          "assets/afg-benefit-regularity.jpg",
+          "assets/afg-benefit-before-after.jpg"
+        ],
         slides: [
           ["Что может дать занятие?", "Не обещание исправить все, а возможность вернуть телу ощущение опоры.", "Визуал: тело как спокойная система"],
           ["Больше телесной собранности", "Когда скелет воспринимается как фундамент, движения становятся спокойнее и точнее.", "Визуал: точные линии движения"],
@@ -925,6 +978,15 @@
         title: "Доказательства",
         series: "Карусель 3",
         tag: "Визуал: proof layer без категоричных обещаний",
+        visuals: [
+          "assets/afg-proof-context.jpg",
+          "assets/afg-proof-living-bone.jpg",
+          "assets/afg-proof-studio-method.jpg",
+          "assets/afg-proof-global-map.jpg",
+          "assets/afg-proof-longevity-path.jpg",
+          "assets/afg-proof-space-load.jpg",
+          "assets/afg-proof-human-story.jpg"
+        ],
         slides: [
           ["Почему это не просто новая тренировка?", "У метода есть контекст: наука о нагрузке, мировая практика и реальные истории людей.", "Визуал: строгая обложка"],
           ["Кость - живая ткань", "Она реагирует на нагрузку, особенно когда та точная, дозированная и безопасно организованная.", "Визуал: кость как живой материал"],
@@ -954,11 +1016,13 @@
 
     function renderSlide(index, slide) {
       const [title, body, tag] = slide;
+      const bg = data.visuals?.[index - 1];
       const node = document.createElement("article");
-      node.className = `slide series-${carouselId} slide-${index}`;
+      node.className = `slide series-${carouselId} slide-${index}${bg ? " has-bg" : ""}`;
       node.setAttribute("aria-label", `${data.series}, слайд ${index}`);
       node.innerHTML = `
         <div class="art" aria-hidden="true">
+          ${bg ? `<img class="bg-image" src="${bg}" alt="">` : ""}
           <div class="axis"></div>
           <div class="thread"></div>
           <div class="mark mark-a"></div>
@@ -998,3 +1062,4 @@
   </script>
 </body>
 </html>
+

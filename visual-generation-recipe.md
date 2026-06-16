@@ -15,14 +15,14 @@ C:\Users\User\.codex\generated_images\019ebe85-7174-71d2-942a-b6713d488983\
 Project copies:
 
 ```text
-assets/afg-hero-opora.png
-assets/afg-resource-breath.png
-assets/afg-proof-atelier.png
+assets/afg-hero-opora.jpg
+assets/afg-resource-breath.jpg
+assets/afg-proof-atelier.jpg
 ```
 
 ## Original Prompts
 
-### `assets/afg-hero-opora.png`
+### `assets/afg-hero-opora.jpg`
 
 ```text
 Use case: ads-marketing
@@ -39,7 +39,7 @@ Text: none
 Constraints: no readable text, no logos, no watermark, no medical equipment, no scary anatomy, no blood, no clinical hospital feel, no exaggerated muscles
 ```
 
-### `assets/afg-resource-breath.png`
+### `assets/afg-resource-breath.jpg`
 
 ```text
 Use case: ads-marketing
@@ -56,7 +56,7 @@ Text: none
 Constraints: no readable text, no logos, no watermark, no humans, no fitness cliches, no gym equipment, no hospital or lab, no fake charts
 ```
 
-### `assets/afg-proof-atelier.png`
+### `assets/afg-proof-atelier.jpg`
 
 ```text
 Use case: ads-marketing
@@ -78,10 +78,10 @@ Constraints: no readable text, no logos, no watermark, no famous institution nam
 Added on June 16, 2026 to remove repeated visuals from Carousel 01:
 
 ```text
-assets/afg-soft-load.png
-assets/afg-precise-rhythm.png
-assets/afg-after-integration.png
-assets/afg-invitation-threshold.png
+assets/afg-soft-load.jpg
+assets/afg-precise-rhythm.jpg
+assets/afg-after-integration.jpg
+assets/afg-invitation-threshold.jpg
 ```
 
 These were generated with the same built-in `image_gen` workflow and the same 16:9 premium editorial wellness direction.
@@ -89,17 +89,64 @@ These were generated with the same built-in `image_gen` workflow and the same 16
 ## Current Carousel 01 Mapping
 
 ```text
-01 -> assets/afg-hero-opora.png
-02 -> assets/afg-resource-breath.png
-03 -> assets/afg-proof-atelier.png
-04 -> assets/afg-soft-load.png
-05 -> assets/afg-precise-rhythm.png
-06 -> assets/afg-after-integration.png
-07 -> assets/afg-invitation-threshold.png
+01 -> assets/afg-hero-opora.jpg
+02 -> assets/afg-resource-breath.jpg
+03 -> assets/afg-proof-atelier.jpg
+04 -> assets/afg-soft-load.jpg
+05 -> assets/afg-precise-rhythm.jpg
+06 -> assets/afg-after-integration.jpg
+07 -> assets/afg-invitation-threshold.jpg
 ```
 
-The exported PNG files were regenerated here:
+The exported master PNG files and site-ready JPG files were regenerated here:
 
 ```text
 exports/afg-carousel-01/
 ```
+
+## New Unique Carousel 02 Assets
+
+Added on June 16, 2026 with the built-in Codex `image_gen` workflow.
+
+```text
+01 -> assets/afg-benefit-system.jpg
+02 -> assets/afg-benefit-collected-motion.jpg
+03 -> assets/afg-benefit-axis.jpg
+04 -> assets/afg-benefit-breath-rhythm.jpg
+05 -> assets/afg-benefit-resource-pause.jpg
+06 -> assets/afg-benefit-regularity.jpg
+07 -> assets/afg-benefit-before-after.jpg
+```
+
+Exports:
+
+```text
+exports/afg-carousel-02/
+```
+
+## New Unique Carousel 03 Assets
+
+Added on June 16, 2026 with the built-in Codex `image_gen` workflow.
+
+```text
+01 -> assets/afg-proof-context.jpg
+02 -> assets/afg-proof-living-bone.jpg
+03 -> assets/afg-proof-studio-method.jpg
+04 -> assets/afg-proof-global-map.jpg
+05 -> assets/afg-proof-longevity-path.jpg
+06 -> assets/afg-proof-space-load.jpg
+07 -> assets/afg-proof-human-story.jpg
+```
+
+Exports:
+
+```text
+exports/afg-carousel-03/
+```
+
+## Format Note
+
+Site pages use JPG assets for performance. PNG masters remain local in `assets/` and `exports/` as archival/source-quality files; they do not need to be loaded by GitHub Pages.
+
+Origin note: these assets were generated with AI tools as production visuals for the AFG carousel system. They are metaphorical editorial wellness imagery, not documentary photography, clinical evidence, or medical illustration. Final publication should pair them only with fact-checked copy.
+

@@ -18,10 +18,12 @@ Static GitHub Pages package for the AFG content system.
 - Filled exports gallery: `exports-gallery.html`
 - Legacy carousel 01 renderer: `carousel-export.html`
 - Production renderer for all 3 carousels: `carousel-production.html`
-- Exported PNG slides:
+- Exported carousel slides:
   - `exports/afg-carousel-01/`
   - `exports/afg-carousel-02/`
   - `exports/afg-carousel-03/`
+  - site previews use `.jpg` for faster GitHub Pages loading
+  - `.png` master exports are kept locally as archive/source files
 
 ## Site Route
 
@@ -33,7 +35,7 @@ Recommended reading order:
 4. `index.html#carousels` - carousel outlines.
 5. `visual-prompts.html` - prompts for visual generation.
 6. `comfy-prompts.html` - ComfyUI-ready production prompts and negative prompt.
-7. `exports-gallery.html` - filled PNG carousel gallery.
+7. `exports-gallery.html` - filled JPG carousel gallery.
 8. `production-handoff.html` - status, QA notes, and next production steps.
 
 ## Local Preview
@@ -62,3 +64,4 @@ Recommended GitHub Pages settings:
 - Source: deploy from branch
 - Branch: `3130`
 - Folder: `/root`
+
