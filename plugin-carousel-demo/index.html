@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Plugin Carousel Demo</title>
+  <style>
+    :root {
+      --ink: #161616;
+      --muted: #66615b;
+      --paper: #f6f2ea;
+      --panel: #fffaf2;
+      --line: #ded4c5;
+      --rose: #d95f5f;
+      --blue: #3267a8;
+      --green: #3f7f62;
+      --gold: #aa7a20;
+      --violet: #6f5aa8;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Inter, Arial, sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+    }
+
+    main {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 32px 0;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      align-items: end;
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      max-width: 760px;
+      margin: 0;
+      font-size: clamp(32px, 5vw, 64px);
+      line-height: 0.95;
+      letter-spacing: 0;
+    }
+
+    .meta {
+      color: var(--muted);
+      max-width: 300px;
+      line-height: 1.45;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+    }
+
+    .slide {
+      min-height: 360px;
+      aspect-ratio: 4 / 5;
+      border: 1px solid var(--line);
+      background: var(--panel);
+      padding: 26px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 18px 36px rgba(22, 22, 22, 0.06);
+    }
+
+    .kicker {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .slide h2 {
+      margin: 0;
+      font-size: clamp(28px, 3vw, 44px);
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    .slide p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.35;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag {
+      border: 1px solid var(--line);
+      padding: 7px 10px;
+      font-size: 13px;
+      background: #fff;
+    }
+
+    .rose { color: var(--rose); }
+    .blue { color: var(--blue); }
+    .green { color: var(--green); }
+    .gold { color: var(--gold); }
+    .violet { color: var(--violet); }
+
+    footer {
+      margin-top: 24px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>5 плагинов для карусели от идеи до экспорта</h1>
+      <div class="meta">Демо-пакет: показывает, какой инструмент помогает на каждом этапе производства.</div>
+    </header>
+
+    <section class="grid" aria-label="Слайды карусели">
+      <article class="slide">
+        <div class="kicker"><span>01</span><span>Cover</span></div>
+        <h2>Не один плагин, а конвейер</h2>
+        <p>Карусель быстрее собирать, когда каждый инструмент отвечает за свой кусок работы.</p>
+        <div class="tags">
+          <span class="tag rose">Creative Production</span>
+          <span class="tag blue">Canva</span>
+          <span class="tag green">Picsart</span>
+        </div>
+      </article>
+
+      <article class="slide">
+        <div class="kicker"><span>02</span><span>Why</span></div>
+        <h2>Карусель - это не только дизайн</h2>
+        <p>Нужны идея, сценарий, визуалы, правки, размеры, проверка читаемости и экспорт.</p>
+        <div class="tags"><span class="tag">brief</span><span class="tag">script</span><span class="tag">QA</span></div>
+      </article>
+
+      <article class="slide">
+        <div class="kicker"><span>03</span><span>Core</span></div>
+        <h2>Сначала роль, потом инструмент</h2>
+        <p>Плагин полезен не потому, что он модный, а потому что закрывает конкретный этап.</p>
+        <div class="tags"><span class="tag">workflow</span><span class="tag">ownership</span></div>
+      </article>
+
+      <article class="slide">
+        <div class="kicker"><span>04</span><span>Concept</span></div>
+        <h2 class="rose">Creative Production</h2>
+        <p>Ищет углы подачи, рекламные концепты, мудборды, визуальные направления и промпты.</p>
+        <div class="tags"><span class="tag">moodboard</span><span class="tag">angles</span><span class="tag">routes</span></div>
+      </article>
+
+      <article class="slide">
+        <div class="kicker"><span>05</span><span>Design</span></div>
+        <h2><span class="blue">Canva</span> + <span class="green">Picsart</span></h2>
+        <p>Canva собирает макет и ресайзы. Picsart быстро правит изображения и делает визуальные варианты.</p>
+        <div class="tags"><span class="tag">layout</span><span class="tag">resize</span><span class="tag">image edits</span></div>
+      </article>
+
+      <article class="slide">
+        <div class="kicker"><span>06</span><span>Special</span></div>
+        <h2><span class="gold">BioRender</span> + <span class="violet">NVIDIA</span></h2>
+        <p>BioRender нужен для научных схем. NVIDIA - для GPU, inference, Omniverse, 3D и симуляций.</p>
+        <div class="tags"><span class="tag">science</span><span class="tag">3D</span><span class="tag">AI infra</span></div>
+      </article>
+
+      <article class="slide">
+        <div class="kicker"><span>07</span><span>CTA</span></div>
+        <h2>Команда звучит просто</h2>
+        <p>"Собери карусель через Creative Production + Canva, картинки поправь через Picsart."</p>
+        <div class="tags"><span class="tag">save</span><span class="tag">reuse</span><span class="tag">export</span></div>
+      </article>
+    </section>
+
+    <footer>
+      Файлы пакета рядом: brief, carousel, plugin map, export plan и QA checklist.
+    </footer>
+  </main>
+</body>
+</html>

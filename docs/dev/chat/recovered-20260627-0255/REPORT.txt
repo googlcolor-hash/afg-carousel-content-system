@@ -1,0 +1,12 @@
+Backup: C:\Users\User\Desktop\codex-backup-20260627-0255
+Output: C:\Users\User\Documents\carusel\docs\dev\chat\recovered-20260627-0255
+Rollouts on disk: 177
+Keyword hits: 169
+Copied: 5
+
+Source paths:
+C:\Users\User\.codex\sessions\2026\06\26\rollout-2026-06-26T04-29-04-019f018b-75fc-7662-b2e0-2857e367dc66.jsonl
+C:\Users\User\.codex\sessions\2026\06\24\rollout-2026-06-24T10-09-27-019ef876-5193-7b91-b4ff-2c3070ab2336.jsonl
+C:\Users\User\.codex\sessions\2026\06\25\rollout-2026-06-25T00-18-59-019efb80-24ad-76d2-818a-0acfdf71a01a.jsonl
+C:\Users\User\.codex\sessions\2026\06\24\rollout-2026-06-24T07-36-22-019ef7ea-36c7-79a3-872a-700e13f32c3b.jsonl
+C:\Users\User\.codex\sessions\2026\06\24\rollout-2026-06-24T22-24-58-019efb17-c2ab-7583-98dd-bc4aa8e81b02.jsonl

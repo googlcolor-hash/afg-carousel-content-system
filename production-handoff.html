@@ -294,6 +294,29 @@
       line-height: 1.42;
     }
 
+    .route-footer {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 64px;
+    }
+
+    .route-footer a {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px;
+      background: #fff;
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 750;
+    }
+
+    .route-footer strong {
+      display: block;
+      color: var(--accent);
+      font-size: 18px;
+    }
+
     footer {
       border-top: 1px solid var(--line);
       padding: 28px 0;
@@ -310,6 +333,10 @@
 
       .wide {
         grid-column: auto;
+      }
+
+      .route-footer {
+        grid-template-columns: 1fr;
       }
 
       .topbar-inner {
@@ -329,8 +356,12 @@
     <div class="wrap topbar-inner">
       <a class="brand" href="index.html">АФГ content system</a>
       <nav class="nav" aria-label="Разделы">
+        <a href="site-map.html">Маршрут</a>
         <a href="index.html">Главная</a>
+        <a href="index.html#videos">Ролики</a>
         <a href="carousel-production.html">Production</a>
+        <a href="visual-prompts.html">Промпты</a>
+        <a href="exports-gallery.html">Заполнено</a>
         <a href="carousel-example.html">Пример 01</a>
         <a href="#exports">Экспорт</a>
         <a href="#visuals">Визуалы</a>
@@ -343,7 +374,7 @@
       <div>
         <span class="kicker">Handoff / 14 июня 2026</span>
         <h1>Три карусели АФГ готовы к следующему проходу.</h1>
-        <p class="lead">Сейчас система уже опубликована: есть рабочая страница, production renderer и 21 PNG. Следующий шаг - заменить технические/повторяющиеся визуалы на уникальные мотивы под каждый слайд.</p>
+        <p class="lead">Сейчас система уже опубликована: есть рабочая страница, production renderer и 21 JPG для быстрой витрины. PNG-мастера остаются локально как архивный экспорт.</p>
         <div class="hero-actions">
           <a class="button primary" href="https://googlcolor-hash.github.io/afg-carousel-content-system/">Открыть Pages</a>
           <a class="button" href="carousel-production.html">Локальный production</a>
@@ -354,7 +385,7 @@
         <h2>Текущий статус</h2>
         <div class="status-list">
           <div class="status-item"><strong>Карусели</strong><span>3 серии по 7 слайдов</span></div>
-          <div class="status-item"><strong>Экспорт</strong><span>21 PNG, 1080x1350</span></div>
+          <div class="status-item"><strong>Экспорт</strong><span>21 JPG на сайте, PNG masters локально, 1080x1350</span></div>
           <div class="status-item"><strong>Pages branch</strong><span>3130 / root</span></div>
           <div class="status-item"><strong>Следующий риск</strong><span>AI-фоны и claims</span></div>
         </div>
@@ -396,24 +427,24 @@
 
     <section id="exports">
       <div class="section-head">
-        <h2>Где брать PNG.</h2>
+        <h2>Где брать финалы.</h2>
         <p>Папки уже лежат в репозитории и опубликованы на Pages. Для Instagram берется последовательность `slide-01` до `slide-07`.</p>
       </div>
       <div class="grid">
         <article class="card">
           <h3>01. Как проходит занятие</h3>
           <p>Сохраненная принятая версия. Лучше оставить как baseline для сравнения.</p>
-          <a class="button primary" href="exports/afg-carousel-01/">Открыть PNG 01</a>
+          <a class="button primary" href="exports/afg-carousel-01/">Открыть JPG 01</a>
         </article>
         <article class="card">
           <h3>02. Что дает занятие</h3>
           <p>Готовый экспорт с уникальной CSS-графикой. Следующая цель - заменить фоновые мотивы на полноценные изображения.</p>
-          <a class="button primary" href="exports/afg-carousel-02/">Открыть PNG 02</a>
+          <a class="button primary" href="exports/afg-carousel-02/">Открыть JPG 02</a>
         </article>
         <article class="card">
           <h3>03. Доказательства</h3>
           <p>Готовый экспорт с осторожными формулировками. Перед публикацией нужен фактчекинг proof-слайдов.</p>
-          <a class="button primary" href="exports/afg-carousel-03/">Открыть PNG 03</a>
+          <a class="button primary" href="exports/afg-carousel-03/">Открыть JPG 03</a>
         </article>
       </div>
     </section>
@@ -468,7 +499,7 @@
     <section id="workflow">
       <div class="section-head">
         <h2>Как переэкспортировать.</h2>
-        <p>Renderer уже построен как HTML/CSS template. После замены текстов или визуального слоя можно снова снять PNG через Playwright.</p>
+        <p>Renderer уже построен как HTML/CSS template. После замены текстов или визуального слоя можно снова снять PNG-мастер и сохранить JPG для сайта.</p>
       </div>
       <pre>python -m http.server 4173 --bind 127.0.0.1
 
@@ -476,6 +507,10 @@
 http://127.0.0.1:4173/carousel-production.html
 http://127.0.0.1:4173/carousel-production.html?carousel=2&slide=1</pre>
     </section>
+    <nav class="route-footer" aria-label="Вперед и назад">
+      <a href="exports-gallery.html"><strong>Назад</strong>Заполненные JPG</a>
+      <a href="site-map.html"><strong>Вперед</strong>Вернуться к карте маршрута</a>
+    </nav>
   </main>
 
   <footer>
@@ -485,3 +520,4 @@ http://127.0.0.1:4173/carousel-production.html?carousel=2&slide=1</pre>
   </footer>
 </body>
 </html>
+

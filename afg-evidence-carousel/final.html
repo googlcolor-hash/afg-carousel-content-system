@@ -1,0 +1,487 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>АФГ - Доказательства - Финальные слайды</title>
+  <style>
+    :root {
+      --paper: #f4eadc;
+      --paper-2: #fff8ec;
+      --ink: #2a1e17;
+      --muted: #705f52;
+      --line: #d8c6b5;
+      --red: #873127;
+      --amber: #b27728;
+      --sage: #68735f;
+      --graphite: #3a332e;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: #e9ded0;
+      color: var(--ink);
+      font-family: Inter, Arial, sans-serif;
+    }
+
+    .deck {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+      padding: 32px;
+    }
+
+    .slide {
+      position: relative;
+      width: 1080px;
+      height: 1350px;
+      overflow: hidden;
+      background: var(--paper);
+      color: var(--ink);
+      transform-origin: top left;
+      box-shadow: 0 24px 70px rgba(42, 30, 23, 0.18);
+    }
+
+    @media (max-width: 1120px) {
+      .deck {
+        align-items: start;
+        width: 1080px;
+      }
+    }
+
+    .grain {
+      position: absolute;
+      inset: 0;
+      opacity: 0.23;
+      background-image:
+        linear-gradient(rgba(42, 30, 23, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(42, 30, 23, 0.035) 1px, transparent 1px);
+      background-size: 36px 36px;
+      pointer-events: none;
+    }
+
+    .frame {
+      position: absolute;
+      inset: 58px;
+      border: 1px solid rgba(42, 30, 23, 0.1);
+      pointer-events: none;
+    }
+
+    .topline {
+      position: absolute;
+      top: 76px;
+      left: 84px;
+      right: 84px;
+      display: flex;
+      justify-content: space-between;
+      color: var(--muted);
+      font-size: 25px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .copy {
+      position: absolute;
+      left: 84px;
+      right: 84px;
+      bottom: 92px;
+      z-index: 3;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      margin-bottom: 32px;
+      padding: 14px 18px;
+      border: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 24px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: rgba(255, 248, 236, 0.66);
+    }
+
+    h2 {
+      margin: 0;
+      max-width: 850px;
+      font-size: 88px;
+      line-height: 0.95;
+      letter-spacing: 0;
+      font-weight: 760;
+    }
+
+    p {
+      margin: 28px 0 0;
+      max-width: 800px;
+      color: var(--muted);
+      font-size: 38px;
+      line-height: 1.22;
+    }
+
+    .source {
+      margin-top: 30px;
+      color: var(--graphite);
+      font-size: 24px;
+      line-height: 1.35;
+      opacity: 0.82;
+    }
+
+    .visual {
+      position: absolute;
+      left: 84px;
+      right: 84px;
+      top: 150px;
+      height: 620px;
+      z-index: 2;
+    }
+
+    .cover {
+      background:
+        radial-gradient(circle at 72% 20%, rgba(135, 49, 39, 0.24), transparent 34%),
+        linear-gradient(140deg, #fff8ec 0%, #efe0cf 100%);
+    }
+
+    .flag {
+      position: absolute;
+      inset: 40px 40px auto auto;
+      width: 560px;
+      height: 370px;
+      background: linear-gradient(135deg, #6f241e, #a83e32);
+      box-shadow: 0 30px 80px rgba(42, 30, 23, 0.18);
+    }
+
+    .flag::before {
+      content: "R";
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      color: rgba(255, 248, 236, 0.34);
+      font-size: 250px;
+      font-weight: 760;
+    }
+
+    .flag::after {
+      content: "";
+      position: absolute;
+      inset: 24px;
+      border: 1px solid rgba(255, 248, 236, 0.25);
+    }
+
+    .papers {
+      position: absolute;
+      left: 36px;
+      top: 72px;
+      width: 760px;
+      height: 470px;
+    }
+
+    .paper {
+      position: absolute;
+      width: 250px;
+      height: 330px;
+      background: rgba(255, 248, 236, 0.88);
+      border: 1px solid var(--line);
+      box-shadow: 0 18px 50px rgba(42, 30, 23, 0.08);
+    }
+
+    .paper:nth-child(1) { left: 20px; top: 76px; transform: rotate(-7deg); }
+    .paper:nth-child(2) { left: 250px; top: 34px; transform: rotate(3deg); }
+    .paper:nth-child(3) { left: 480px; top: 90px; transform: rotate(8deg); }
+
+    .paper span {
+      display: block;
+      height: 12px;
+      margin: 34px 28px 0;
+      background: rgba(42, 30, 23, 0.18);
+      box-shadow: 0 42px 0 rgba(42, 30, 23, 0.12), 0 84px 0 rgba(42, 30, 23, 0.1), 0 126px 0 rgba(42, 30, 23, 0.08);
+    }
+
+    .hall {
+      position: absolute;
+      inset: 80px 50px 0;
+      perspective: 800px;
+    }
+
+    .hall .stage {
+      position: absolute;
+      left: 80px;
+      right: 80px;
+      bottom: 90px;
+      height: 170px;
+      border: 1px solid var(--line);
+      background: rgba(255, 248, 236, 0.7);
+    }
+
+    .hall .rays {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(110deg, transparent 0 42%, rgba(42,30,23,0.12) 42.2% 42.6%, transparent 43%),
+        linear-gradient(70deg, transparent 0 46%, rgba(42,30,23,0.1) 46.2% 46.6%, transparent 47%),
+        linear-gradient(90deg, transparent 0 50%, rgba(42,30,23,0.08) 50.2% 50.5%, transparent 51%);
+    }
+
+    .hall .rows {
+      position: absolute;
+      left: 120px;
+      right: 120px;
+      bottom: 300px;
+      height: 190px;
+      background: repeating-linear-gradient(to bottom, rgba(42,30,23,0.14) 0 8px, transparent 8px 26px);
+      transform: skewX(-12deg);
+    }
+
+    .bone {
+      position: absolute;
+      left: 180px;
+      top: 70px;
+      width: 540px;
+      height: 420px;
+      filter: drop-shadow(0 40px 70px rgba(178, 119, 40, 0.18));
+    }
+
+    .bone .shaft {
+      position: absolute;
+      left: 170px;
+      top: 90px;
+      width: 200px;
+      height: 245px;
+      border-radius: 90px;
+      background: linear-gradient(90deg, #e6c495, #fff1d8 45%, #c99152);
+      transform: rotate(-14deg);
+    }
+
+    .bone .orb {
+      position: absolute;
+      width: 210px;
+      height: 210px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, #fff4df, #d4a56c 58%, #a96931);
+    }
+
+    .bone .orb.one { left: 60px; top: 30px; }
+    .bone .orb.two { right: 70px; bottom: 40px; }
+
+    .bone .pulse {
+      position: absolute;
+      inset: 40px;
+      border: 2px solid rgba(178, 119, 40, 0.34);
+      border-radius: 50%;
+    }
+
+    .map {
+      position: absolute;
+      inset: 90px 20px 0;
+      border: 1px solid var(--line);
+      background:
+        radial-gradient(circle at 25% 45%, rgba(104,115,95,0.28), transparent 7%),
+        radial-gradient(circle at 45% 33%, rgba(104,115,95,0.24), transparent 9%),
+        radial-gradient(circle at 61% 52%, rgba(104,115,95,0.22), transparent 8%),
+        radial-gradient(circle at 76% 40%, rgba(104,115,95,0.18), transparent 9%),
+        linear-gradient(180deg, rgba(255,248,236,0.84), rgba(244,234,220,0.5));
+    }
+
+    .map::before {
+      content: "14 стран   200+ центров";
+      position: absolute;
+      left: 40px;
+      bottom: 38px;
+      color: var(--sage);
+      font-size: 34px;
+      font-weight: 700;
+    }
+
+    .space {
+      background: radial-gradient(circle at 50% 30%, #54483e, #231a16 70%);
+      color: #fff8ec;
+    }
+
+    .space .frame { border-color: rgba(255, 248, 236, 0.12); }
+    .space .topline, .space p, .space .source { color: rgba(255,248,236,0.72); }
+    .space .eyebrow { border-color: rgba(255,248,236,0.22); color: rgba(255,248,236,0.74); background: rgba(255,248,236,0.05); }
+
+    .orbit {
+      position: absolute;
+      left: 180px;
+      top: 70px;
+      width: 520px;
+      height: 420px;
+      border: 2px solid rgba(255,248,236,0.2);
+      border-radius: 50%;
+      transform: rotate(-19deg);
+    }
+
+    .orbit::before {
+      content: "ISS";
+      position: absolute;
+      right: 50px;
+      top: 92px;
+      color: rgba(255,248,236,0.24);
+      font-size: 160px;
+      font-weight: 780;
+      letter-spacing: 0;
+    }
+
+    .orbit::after {
+      content: "";
+      position: absolute;
+      left: 78px;
+      top: 112px;
+      width: 94px;
+      height: 94px;
+      border-radius: 50%;
+      background: #fff8ec;
+      box-shadow: 0 0 55px rgba(255,248,236,0.28);
+    }
+
+    .living {
+      position: absolute;
+      inset: 40px 60px 0;
+      background:
+        radial-gradient(circle at 52% 38%, rgba(178,119,40,0.26), transparent 28%),
+        linear-gradient(180deg, transparent, rgba(178,119,40,0.06));
+    }
+
+    .living::before {
+      content: "";
+      position: absolute;
+      left: 375px;
+      top: 20px;
+      width: 100px;
+      height: 500px;
+      border-radius: 60px;
+      background: linear-gradient(90deg, rgba(178,119,40,0.18), rgba(255,248,236,0.8), rgba(178,119,40,0.16));
+    }
+
+    .living::after {
+      content: "";
+      position: absolute;
+      left: 278px;
+      top: 75px;
+      width: 290px;
+      height: 290px;
+      border: 1px solid rgba(178,119,40,0.34);
+      border-radius: 50%;
+    }
+
+    .sources {
+      position: absolute;
+      left: 140px;
+      top: 130px;
+      width: 700px;
+      height: 430px;
+      border: 1px solid var(--line);
+      background: rgba(255,248,236,0.78);
+      padding: 48px;
+    }
+
+    .sources div {
+      height: 18px;
+      margin-bottom: 28px;
+      background: rgba(42,30,23,0.12);
+    }
+
+    .sources div:nth-child(1) { width: 88%; }
+    .sources div:nth-child(2) { width: 72%; }
+    .sources div:nth-child(3) { width: 80%; }
+    .sources div:nth-child(4) { width: 62%; }
+    .sources div:nth-child(5) { width: 76%; }
+  </style>
+</head>
+<body>
+  <main class="deck">
+    <section class="slide cover export-slide" id="slide-01">
+      <div class="grain"></div><div class="frame"></div>
+      <div class="topline"><span>01</span><span>доверие</span></div>
+        <div class="visual"><div class="flag"></div></div>
+      <div class="copy">
+        <span class="eyebrow">Editorial Science</span>
+        <h2>Методика, за которой стоят исследования</h2>
+        <p>Не громкие обещания. Факты, по которым можно проверить доверие.</p>
+      </div>
+    </section>
+
+    <section class="slide export-slide" id="slide-02">
+      <div class="grain"></div><div class="frame"></div>
+      <div class="topline"><span>02</span><span>исследования</span></div>
+        <div class="visual papers"><div class="paper"><span></span></div><div class="paper"><span></span></div><div class="paper"><span></span></div></div>
+        <div class="copy">
+          <span class="eyebrow">Research Trail</span>
+          <h2>Есть опубликованные исследования</h2>
+          <p>В открытых базах есть работа по Anatoly Gravitational System с авторами из Emory и публикации по osteogenic loading.</p>
+          <div class="source">В финальном дизайне рядом должны стоять ссылки на PubMed / PMC / DOI.</div>
+        </div>
+      </section>
+
+    <section class="slide export-slide" id="slide-03">
+      <div class="grain"></div><div class="frame"></div>
+      <div class="topline"><span>03</span><span>конгресс</span></div>
+      <div class="visual hall"><div class="rays"></div><div class="rows"></div><div class="stage"></div></div>
+      <div class="copy">
+          <span class="eyebrow">Berlin, 2015</span>
+          <h2>Профессиональный контекст требует точных ссылок</h2>
+          <p>Для конгрессов важны не громкие названия, а программа, abstract и DOI. Так факт становится аргументом.</p>
+        </div>
+      </section>
+
+    <section class="slide export-slide" id="slide-04">
+      <div class="grain"></div><div class="frame"></div>
+      <div class="topline"><span>04</span><span>кость</span></div>
+      <div class="visual bone"><div class="pulse"></div><div class="orb one"></div><div class="shaft"></div><div class="orb two"></div></div>
+      <div class="copy">
+        <span class="eyebrow">Inner Architecture</span>
+        <h2>Кость реагирует на нагрузку</h2>
+        <p>Смысл методики раскрывается через короткий точный импульс и работу костной системы.</p>
+      </div>
+    </section>
+
+    <section class="slide export-slide" id="slide-05">
+      <div class="grain"></div><div class="frame"></div>
+      <div class="topline"><span>05</span><span>масштаб</span></div>
+      <div class="visual"><div class="map"></div></div>
+      <div class="copy">
+          <span class="eyebrow">Human Scale</span>
+          <h2>Это не локальный эксперимент</h2>
+          <p>OsteoStrong официально сообщает о 200+ центрах в 14 странах и роли Tony Robbins в развитии сети.</p>
+          <div class="source">Логотипы, портреты и точные формулировки использовать только с правами и ссылкой.</div>
+        </div>
+      </section>
+
+    <section class="slide space export-slide" id="slide-06">
+      <div class="grain"></div><div class="frame"></div>
+      <div class="topline"><span>06</span><span>космос</span></div>
+      <div class="visual"><div class="orbit"></div></div>
+      <div class="copy">
+        <span class="eyebrow">Microgravity</span>
+        <h2>Принцип нагрузки важен даже в космосе</h2>
+        <p>В невесомости кости теряют привычную нагрузку, поэтому на МКС используют специальные тренажеры.</p>
+      </div>
+    </section>
+
+    <section class="slide export-slide" id="slide-07">
+      <div class="grain"></div><div class="frame"></div>
+      <div class="topline"><span>07</span><span>смысл</span></div>
+      <div class="visual"><div class="living"></div></div>
+      <div class="copy">
+        <span class="eyebrow">Living System</span>
+        <h2>Скелет - не просто опора</h2>
+        <p>Это живая система, с которой может начинаться разговор о силе, восстановлении и ресурсе.</p>
+      </div>
+    </section>
+
+    <section class="slide export-slide" id="slide-08">
+      <div class="grain"></div><div class="frame"></div>
+      <div class="topline"><span>08</span><span>источники</span></div>
+      <div class="visual"><div class="sources"><div></div><div></div><div></div><div></div><div></div></div></div>
+      <div class="copy">
+        <span class="eyebrow">Transparency</span>
+        <h2>Проверьте источники</h2>
+        <p>Ссылки на исследования и материалы собраны на сайте в шапке профиля.</p>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

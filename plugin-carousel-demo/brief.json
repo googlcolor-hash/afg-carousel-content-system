@@ -1,0 +1,19 @@
+{
+  "topic": "Как плагины Codex помогают собрать карусель",
+  "audience": "создатели контента и малые команды",
+  "goal": "explain how selected Codex plugins help produce a carousel",
+  "offer": "a reusable plugin-to-production workflow",
+  "industry": "general",
+  "tone": "clear, useful, platform-native",
+  "platforms": [
+    "instagram",
+    "linkedin"
+  ],
+  "primary_output": "carousel+short-video",
+  "constraints": {
+    "brand": "Use project or user-provided brand guidance.",
+    "language": "ru",
+    "cta": "save and share",
+    "lead_mechanism": "ask Codex to turn the pack into Canva/Figma/HTML exports"
+  }
+}

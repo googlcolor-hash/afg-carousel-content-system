@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>АФГ - карта контент-системы</title>
+  <meta name="description" content="Структурная карта сайта АФГ: концепция, ролики, карусели, визуальные промпты и готовые экспорты.">
+  <style>
+    :root {
+      --bg: #f4f6f2;
+      --ink: #18221f;
+      --muted: #61716b;
+      --surface: #ffffff;
+      --line: rgba(24, 34, 31, .13);
+      --accent: #315f4c;
+      --accent-2: #a8563d;
+      --soft: #e3eae1;
+      color-scheme: light;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Aptos", "Segoe UI", system-ui, -apple-system, sans-serif;
+      letter-spacing: 0;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(24, 34, 31, .08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(24, 34, 31, .08) 1px, transparent 1px);
+      background-size: 72px 72px;
+      opacity: .7;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .wrap {
+      position: relative;
+      z-index: 1;
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid var(--line);
+      background: rgba(244, 246, 242, .92);
+      backdrop-filter: blur(18px);
+    }
+
+    .topbar-inner {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 22px;
+      min-height: 70px;
+    }
+
+    .brand { font-size: 18px; font-weight: 900; color: var(--accent); }
+
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .nav a,
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      border: 1px solid rgba(49, 95, 76, .22);
+      border-radius: 8px;
+      padding: 10px 13px;
+      background: rgba(255, 255, 255, .72);
+      color: var(--accent);
+      font-size: 14px;
+      font-weight: 850;
+      white-space: nowrap;
+    }
+
+    .button.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+    .chip {
+      border-radius: 999px;
+      padding: 9px 13px;
+      background: var(--soft);
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    main { padding: 70px 0 88px; }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(320px, .72fr);
+      gap: 42px;
+      align-items: end;
+      margin-bottom: 54px;
+    }
+
+    .kicker {
+      display: inline-flex;
+      width: fit-content;
+      border: 1px solid rgba(49, 95, 76, .24);
+      border-radius: 999px;
+      padding: 9px 12px;
+      background: #fff;
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    h1, h2, h3, p { margin: 0; }
+
+    h1 {
+      max-width: 860px;
+      margin-top: 22px;
+      font-size: clamp(56px, 9vw, 116px);
+      line-height: .9;
+      letter-spacing: 0;
+      text-wrap: balance;
+    }
+
+    .lead {
+      max-width: 760px;
+      margin-top: 24px;
+      color: var(--muted);
+      font-size: clamp(20px, 2.2vw, 28px);
+      line-height: 1.22;
+      font-weight: 650;
+    }
+
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+
+    .status {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 22px;
+      background: rgba(255, 255, 255, .78);
+      box-shadow: 0 18px 50px rgba(24, 34, 31, .08);
+    }
+
+    .status h2 { font-size: 26px; line-height: 1.05; }
+
+    .status-grid { display: grid; gap: 12px; margin-top: 18px; }
+
+    .status-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      border-top: 1px solid var(--line);
+      padding-top: 12px;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .status-row strong { color: var(--ink); }
+
+    section { margin-top: 58px; }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, .8fr) minmax(280px, .56fr);
+      gap: 26px;
+      align-items: end;
+      margin-bottom: 22px;
+    }
+
+    .section-head h2 {
+      font-size: clamp(36px, 5vw, 66px);
+      line-height: .95;
+      text-wrap: balance;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.45;
+      font-weight: 650;
+    }
+
+    .route {
+      display: grid;
+      gap: 14px;
+      counter-reset: route;
+    }
+
+    .route-card {
+      display: grid;
+      grid-template-columns: 92px minmax(0, 1fr) auto;
+      gap: 20px;
+      align-items: center;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 20px;
+      background: rgba(255, 255, 255, .82);
+    }
+
+    .route-card::before {
+      counter-increment: route;
+      content: "0" counter(route);
+      color: var(--accent-2);
+      font-size: 34px;
+      line-height: 1;
+      font-weight: 950;
+    }
+
+    .route-card h3 { font-size: 25px; line-height: 1.08; }
+
+    .route-card p {
+      margin-top: 7px;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.38;
+      font-weight: 650;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 22px;
+      background: rgba(255, 255, 255, .82);
+    }
+
+    .card h3 { font-size: 24px; line-height: 1.08; }
+
+    .card p {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.42;
+      font-weight: 650;
+    }
+
+    .card .button { margin-top: 18px; }
+
+    .page-nav {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 64px;
+    }
+
+    .page-nav a {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px;
+      background: #fff;
+      color: var(--muted);
+      font-weight: 750;
+    }
+
+    .page-nav strong { display: block; color: var(--accent); font-size: 18px; }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 28px 0;
+      color: var(--muted);
+      font-weight: 650;
+    }
+
+    @media (max-width: 860px) {
+      .topbar-inner, .hero, .section-head, .cards, .page-nav { grid-template-columns: 1fr; }
+      .nav { justify-content: flex-start; }
+      .topbar-inner { padding: 16px 0; }
+      .route-card { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a class="brand" href="site-map.html">АФГ system</a>
+      <nav class="nav" aria-label="Основное меню">
+        <a href="index.html#concept">Концепция</a>
+        <a href="index.html#videos">Ролики</a>
+        <a href="carousel-production.html">Карусели</a>
+        <a href="visual-prompts.html">Промпты</a>
+        <a href="exports-gallery.html">Заполнено</a>
+        <a href="production-handoff.html">Handoff</a>
+      </nav>
+      <span class="chip">Карта сайта</span>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <div>
+        <span class="kicker">Production route</span>
+        <h1>Один маршрут вместо набора страниц.</h1>
+        <p class="lead">Сайт собран как рабочая система: сначала смысловая концепция, затем ролики, карусели, промпты для визуалов и уже заполненные PNG-экспорты.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#route">Пройти маршрут</a>
+          <a class="button" href="exports-gallery.html">Смотреть заполненные карусели</a>
+          <a class="button" href="visual-prompts.html">Открыть промпты</a>
+        </div>
+      </div>
+      <aside class="status">
+        <h2>Что уже есть</h2>
+        <div class="status-grid">
+          <div class="status-row"><strong>Концепция</strong><span>стратегия и claims</span></div>
+          <div class="status-row"><strong>Ролики</strong><span>3 сценария</span></div>
+          <div class="status-row"><strong>Карусели</strong><span>3 серии по 7</span></div>
+          <div class="status-row"><strong>Экспорт</strong><span>21 PNG</span></div>
+        </div>
+      </aside>
+    </section>
+
+    <section id="route">
+      <div class="section-head">
+        <h2>Порядок работы.</h2>
+        <p>Страница нужна как оглавление и как “вперед-назад” навигация. Если теряешься, возвращайся сюда.</p>
+      </div>
+      <div class="route">
+        <article class="route-card">
+          <div>
+            <h3>Основная концепция</h3>
+            <p>Смысл АФГ, тон коммуникации, стратегия доверия и claim-guardrails.</p>
+          </div>
+          <a class="button" href="index.html#concept">Открыть</a>
+        </article>
+        <article class="route-card">
+          <div>
+            <h3>Ролики</h3>
+            <p>Три сценария коротких видео: вход, ресурс, доказательный слой.</p>
+          </div>
+          <a class="button" href="index.html#videos">Открыть</a>
+        </article>
+        <article class="route-card">
+          <div>
+            <h3>Карусели</h3>
+            <p>Сценарии трех каруселей и production renderer для просмотра слайдов.</p>
+          </div>
+          <a class="button" href="carousel-production.html">Открыть</a>
+        </article>
+        <article class="route-card">
+          <div>
+              <h3>Промпты для визуалов</h3>
+              <p>21 prompt-slot и отдельный ComfyUI production pack для финальной генерации.</p>
+            </div>
+            <a class="button" href="visual-prompts.html">Открыть</a>
+          </article>
+        <article class="route-card">
+          <div>
+            <h3>Заполненные карусели</h3>
+            <p>Галерея готовых PNG: три папки, каждая по семь слайдов.</p>
+          </div>
+          <a class="button" href="exports-gallery.html">Открыть</a>
+        </article>
+        <article class="route-card">
+          <div>
+            <h3>Handoff</h3>
+            <p>Рабочие ссылки, статус, риски, правила переэкспорта и следующий production sprint.</p>
+          </div>
+          <a class="button" href="production-handoff.html">Открыть</a>
+        </article>
+      </div>
+    </section>
+
+    <section id="shortcuts">
+      <div class="section-head">
+        <h2>Быстрые входы.</h2>
+        <p>Для разных задач нужны разные двери: смотреть смысл, копировать промпты, брать готовые PNG или проверять renderer.</p>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <h3>Для контента</h3>
+          <p>Начни с брифа, затем проверь claims и выбери сценарий ролика или карусели.</p>
+          <a class="button" href="index.html">Контент-страница</a>
+        </article>
+        <article class="card">
+          <h3>Для дизайна</h3>
+          <p>Смотри production renderer, затем замещай технический visual layer картинками по промптам.</p>
+          <a class="button" href="carousel-production.html">Renderer</a>
+        </article>
+        <article class="card">
+          <h3>Для публикации</h3>
+          <p>Бери PNG из галереи, сверяй финальный дисклеймер и готовь caption.</p>
+          <a class="button" href="exports-gallery.html">PNG-галерея</a>
+        </article>
+      </div>
+    </section>
+
+    <nav class="page-nav" aria-label="Вперед и назад">
+      <a href="production-handoff.html"><strong>Назад</strong>Handoff и статус</a>
+      <a href="index.html#concept"><strong>Вперед</strong>Основная концепция</a>
+    </nav>
+  </main>
+
+  <footer>
+    <div class="wrap">AFG carousel content system. Карта связывает стратегию, ролики, карусели, промпты и готовые экспорты.</div>
+  </footer>
+</body>
+</html>

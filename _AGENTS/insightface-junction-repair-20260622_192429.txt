@@ -1,0 +1,5 @@
+Original path: C:\AI\ComfyUI_Easy_Install\ComfyUI-Easy-Install\ComfyUI\models\insightface
+Attributes: Directory, ReparsePoint
+LinkType: Junction
+Target: E:\AI_MODELS\ComfyUI\models\insightface
+Repair time: 20260622_192429

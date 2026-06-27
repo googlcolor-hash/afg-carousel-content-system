@@ -558,6 +558,28 @@
       color: var(--muted);
     }
 
+    .route-footer {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 40px;
+    }
+
+    .route-footer a {
+      border: 1px solid rgba(49, 95, 76, .18);
+      border-radius: var(--radius);
+      padding: 18px;
+      background: rgba(255, 255, 255, .72);
+      color: var(--muted);
+      font-weight: 750;
+    }
+
+    .route-footer strong {
+      display: block;
+      color: var(--accent);
+      font-size: 18px;
+    }
+
     @media (max-width: 1040px) {
       .hero-grid,
       .board,
@@ -624,6 +646,10 @@
       .slide-title {
         font-size: clamp(34px, 13vw, 50px);
       }
+
+      .route-footer {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
@@ -633,9 +659,12 @@
       <div class="wrap topbar-inner">
         <a class="brand" href="index.html">АФГ content system</a>
         <nav class="nav" aria-label="Разделы страницы">
+          <a href="site-map.html">Маршрут</a>
           <a href="index.html#carousels">Все карусели</a>
           <a href="#slides">Слайды</a>
           <a href="#export">Экспорт</a>
+          <a href="visual-prompts.html#carousel-01">Промпты</a>
+          <a href="exports-gallery.html#carousel-01">Заполнено</a>
           <a href="carousel-production.html?carousel=1">Production</a>
         </nav>
         <span class="chip">Готовый пример 01</span>
@@ -662,7 +691,7 @@
           </div>
           <div class="hero-proof" aria-label="Обложка и производственная заметка">
             <figure class="proof-tile">
-              <img src="assets/afg-hero-opora.png" width="1672" height="941" decoding="async" fetchpriority="high" alt="Визуал с образом внутренней опоры для обложки карусели">
+              <img src="assets/afg-hero-opora.jpg" width="1672" height="941" decoding="async" fetchpriority="high" alt="Визуал с образом внутренней опоры для обложки карусели">
             </figure>
             <div class="proof-copy">
               <strong>Первый пост должен не продавать, а успокаивать.</strong>
@@ -684,13 +713,13 @@
             </ul>
           </article>
           <div class="mini-grid" aria-label="Миниатюры всех слайдов">
-            <a class="mini-card" href="#slide-1"><img src="assets/afg-hero-opora.png" width="1672" height="941" decoding="async" alt=""><span>01</span><strong>Как проходит?</strong></a>
-            <a class="mini-card" href="#slide-2"><img src="assets/afg-resource-breath.png" width="1672" height="941" decoding="async" alt=""><span>02</span><strong>Настройка тела</strong></a>
-            <a class="mini-card" href="#slide-3"><img src="assets/afg-proof-atelier.png" width="1672" height="941" decoding="async" alt=""><span>03</span><strong>Скелет как фундамент</strong></a>
-            <a class="mini-card" href="#slide-4"><img src="assets/afg-hero-opora.png" width="1672" height="941" decoding="async" alt=""><span>04</span><strong>Осевая нагрузка</strong></a>
-            <a class="mini-card" href="#slide-5"><img src="assets/afg-proof-atelier.png" width="1672" height="941" decoding="async" alt=""><span>05</span><strong>Коротко и точно</strong></a>
-            <a class="mini-card" href="#slide-6"><img src="assets/afg-resource-breath.png" width="1672" height="941" decoding="async" alt=""><span>06</span><strong>Интеграция</strong></a>
-            <a class="mini-card" href="#slide-7"><img src="assets/afg-hero-opora.png" width="1672" height="941" decoding="async" alt=""><span>07</span><strong>Записаться</strong></a>
+            <a class="mini-card" href="#slide-1"><img src="assets/afg-hero-opora.jpg" width="1672" height="941" decoding="async" alt=""><span>01</span><strong>Как проходит?</strong></a>
+            <a class="mini-card" href="#slide-2"><img src="assets/afg-resource-breath.jpg" width="1672" height="941" decoding="async" alt=""><span>02</span><strong>Настройка тела</strong></a>
+            <a class="mini-card" href="#slide-3"><img src="assets/afg-proof-atelier.jpg" width="1672" height="941" decoding="async" alt=""><span>03</span><strong>Скелет как фундамент</strong></a>
+            <a class="mini-card" href="#slide-4"><img src="assets/afg-soft-load.jpg" width="1672" height="941" decoding="async" alt=""><span>04</span><strong>Осевая нагрузка</strong></a>
+            <a class="mini-card" href="#slide-5"><img src="assets/afg-precise-rhythm.jpg" width="1672" height="941" decoding="async" alt=""><span>05</span><strong>Коротко и точно</strong></a>
+            <a class="mini-card" href="#slide-6"><img src="assets/afg-after-integration.jpg" width="1672" height="941" decoding="async" alt=""><span>06</span><strong>Интеграция</strong></a>
+            <a class="mini-card" href="#slide-7"><img src="assets/afg-invitation-threshold.jpg" width="1672" height="941" decoding="async" alt=""><span>07</span><strong>Записаться</strong></a>
           </div>
         </div>
       </section>
@@ -705,7 +734,7 @@
           <div class="slides">
             <article class="slide-card" id="slide-1">
               <div class="slide-frame">
-                <img src="assets/afg-hero-opora.png" width="1672" height="941" loading="lazy" decoding="async" alt="Фон обложки про внутреннюю опору">
+                <img src="assets/afg-hero-opora.jpg" width="1672" height="941" loading="lazy" decoding="async" alt="Фон обложки про внутреннюю опору">
                 <div class="slide-content">
                   <div class="slide-top"><span>АФГ</span><span>01 / 07</span></div>
                   <div class="slide-bottom">
@@ -729,7 +758,7 @@
 
             <article class="slide-card" id="slide-2">
               <div class="slide-frame light">
-                <img src="assets/afg-resource-breath.png" width="1672" height="941" loading="lazy" decoding="async" alt="Фон про дыхание и настройку тела">
+                <img src="assets/afg-resource-breath.jpg" width="1672" height="941" loading="lazy" decoding="async" alt="Фон про дыхание и настройку тела">
                 <div class="slide-content">
                   <div class="slide-top"><span>НАСТРОЙКА</span><span>02 / 07</span></div>
                   <div class="slide-bottom">
@@ -753,7 +782,7 @@
 
             <article class="slide-card" id="slide-3">
               <div class="slide-frame">
-                <img src="assets/afg-proof-atelier.png" width="1672" height="941" loading="lazy" decoding="async" alt="Фон с костной структурой и доказательным слоем">
+                <img src="assets/afg-proof-atelier.jpg" width="1672" height="941" loading="lazy" decoding="async" alt="Фон с костной структурой и доказательным слоем">
                 <div class="slide-content">
                   <div class="slide-top"><span>ОПОРА</span><span>03 / 07</span></div>
                   <div class="slide-bottom">
@@ -777,7 +806,7 @@
 
             <article class="slide-card" id="slide-4">
               <div class="slide-frame">
-                <img src="assets/afg-hero-opora.png" width="1672" height="941" loading="lazy" decoding="async" alt="Фон про мягкую осевую нагрузку">
+                <img src="assets/afg-soft-load.jpg" width="1672" height="941" loading="lazy" decoding="async" alt="Фон про мягкую осевую нагрузку">
                 <div class="slide-content">
                   <div class="slide-top"><span>ДЕЙСТВИЕ</span><span>04 / 07</span></div>
                   <div class="slide-bottom">
@@ -801,7 +830,7 @@
 
             <article class="slide-card" id="slide-5">
               <div class="slide-frame">
-                <img src="assets/afg-proof-atelier.png" width="1672" height="941" loading="lazy" decoding="async" alt="Фон про точность и структуру занятия">
+                <img src="assets/afg-precise-rhythm.jpg" width="1672" height="941" loading="lazy" decoding="async" alt="Фон про точность и ритм занятия">
                 <div class="slide-content">
                   <div class="slide-top"><span>РИТМ</span><span>05 / 07</span></div>
                   <div class="slide-bottom">
@@ -825,7 +854,7 @@
 
             <article class="slide-card" id="slide-6">
               <div class="slide-frame light">
-                <img src="assets/afg-resource-breath.png" width="1672" height="941" loading="lazy" decoding="async" alt="Фон про интеграцию после занятия">
+                <img src="assets/afg-after-integration.jpg" width="1672" height="941" loading="lazy" decoding="async" alt="Фон про интеграцию после занятия">
                 <div class="slide-content">
                   <div class="slide-top"><span>ПОСЛЕ</span><span>06 / 07</span></div>
                   <div class="slide-bottom">
@@ -849,7 +878,7 @@
 
             <article class="slide-card" id="slide-7">
               <div class="slide-frame">
-                <img src="assets/afg-hero-opora.png" width="1672" height="941" loading="lazy" decoding="async" alt="Фон финального CTA про практику опоры">
+                <img src="assets/afg-invitation-threshold.jpg" width="1672" height="941" loading="lazy" decoding="async" alt="Фон финального CTA про практику опоры">
                 <div class="slide-content">
                   <div class="slide-top"><span>ШАГ</span><span>07 / 07</span></div>
                   <div class="slide-bottom">
@@ -901,14 +930,22 @@
           <div class="spec-row" aria-label="Ссылки на production-файлы">
             <a class="button" href="carousel-production.html?carousel=1">Открыть production-слайды</a>
             <a class="button secondary" href="carousel-production.html">Все production-карусели</a>
-            <a class="button secondary" href="exports/afg-carousel-01/afg-carousel-01-slide-01.png">PNG slide 01</a>
-            <a class="button secondary" href="exports/afg-carousel-01/afg-carousel-01-slide-02.png">PNG slide 02</a>
-            <a class="button secondary" href="exports/afg-carousel-01/afg-carousel-01-slide-03.png">PNG slide 03</a>
-            <a class="button secondary" href="exports/afg-carousel-01/afg-carousel-01-slide-04.png">PNG slide 04</a>
-            <a class="button secondary" href="exports/afg-carousel-01/afg-carousel-01-slide-05.png">PNG slide 05</a>
-            <a class="button secondary" href="exports/afg-carousel-01/afg-carousel-01-slide-06.png">PNG slide 06</a>
-            <a class="button secondary" href="exports/afg-carousel-01/afg-carousel-01-slide-07.png">PNG slide 07</a>
+            <a class="button secondary" href="exports/afg-carousel-01/afg-carousel-01-slide-01.jpg">PNG slide 01</a>
+            <a class="button secondary" href="exports/afg-carousel-01/afg-carousel-01-slide-02.jpg">PNG slide 02</a>
+            <a class="button secondary" href="exports/afg-carousel-01/afg-carousel-01-slide-03.jpg">PNG slide 03</a>
+            <a class="button secondary" href="exports/afg-carousel-01/afg-carousel-01-slide-04.jpg">PNG slide 04</a>
+            <a class="button secondary" href="exports/afg-carousel-01/afg-carousel-01-slide-05.jpg">PNG slide 05</a>
+            <a class="button secondary" href="exports/afg-carousel-01/afg-carousel-01-slide-06.jpg">PNG slide 06</a>
+            <a class="button secondary" href="exports/afg-carousel-01/afg-carousel-01-slide-07.jpg">PNG slide 07</a>
           </div>
+        </div>
+      </section>
+      <section>
+        <div class="wrap">
+          <nav class="route-footer" aria-label="Вперед и назад">
+            <a href="site-map.html"><strong>Назад</strong>Карта маршрута</a>
+            <a href="exports-gallery.html#carousel-01"><strong>Вперед</strong>Заполненная карусель 01</a>
+          </nav>
         </div>
       </section>
     </main>
@@ -921,3 +958,4 @@
   </div>
 </body>
 </html>
+
